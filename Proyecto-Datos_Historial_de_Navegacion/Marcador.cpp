@@ -1,15 +1,15 @@
 #include "Marcador.h"
 
-Marcador::Marcador(Page* Page, const std::vector<std::string>& tag) : page{Page}, tags{tag} 
+Marcador::Marcador(Pagina* pagina, const std::vector<std::string>& tag) : pagina{pagina}, etiquetas{ etiquetas }
 {
 }
 
-Page* Marcador::getPage() const
+Pagina* Marcador::getPagina() const
 {
-    return page;
+    return pagina;
 }
 
-std::vector<std::string> Marcador::getTags() const
+std::vector<std::string> Marcador::getEtiquetas() const
 {
-    return tags;
+    return etiquetas;
 }

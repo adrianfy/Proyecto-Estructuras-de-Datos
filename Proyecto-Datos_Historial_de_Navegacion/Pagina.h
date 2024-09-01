@@ -2,16 +2,16 @@
 #include<iostream>
 #include<string>
 #include<sstream>
-class Page
+class Pagina
 {
 protected:
 	std::string url;
 	std::string dominio;
 	std::string titulo;
 public:
-	Page();
-	Page(std::string& Url, std::string& Dominio, std::string& Titulo);
-	~Page();
+	Pagina();
+	Pagina(std::string& Url, std::string& Dominio, std::string& Titulo);
+	~Pagina();
 	std::string getUrl() const;
 	std::string getDominio() const;
 	std::string getTitulo() const;
