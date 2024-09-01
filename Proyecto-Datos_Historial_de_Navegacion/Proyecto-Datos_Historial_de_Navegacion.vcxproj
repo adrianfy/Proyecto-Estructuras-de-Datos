@@ -131,7 +131,8 @@
     <ClInclude Include="GestorDeMarcadores.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Marcador.h" />
-    <ClInclude Include="Page.h" />
+    <ClInclude Include="Navegador.h" />
+    <ClInclude Include="Pagina.h" />
     <ClInclude Include="Sesion.h" />
     <ClInclude Include="Tab.h" />
   </ItemGroup>
@@ -140,7 +141,8 @@
     <ClCompile Include="GestorDeMarcadores.cpp" />
     <ClCompile Include="Historial.cpp" />
     <ClCompile Include="Marcador.cpp" />
-    <ClCompile Include="Page.cpp" />
+    <ClCompile Include="Navegador.cpp" />
+    <ClCompile Include="Pagina.cpp" />
     <ClCompile Include="Sesion.cpp" />
     <ClCompile Include="Tab.cpp" />
   </ItemGroup>

@@ -1,60 +1,62 @@
 #include "Navegador.h"
 #include <iostream>
 
-Navegador::Navegador() : indicePestaniaActual(0), modoIncognito(false) {
-    nuevaPestania(); // Inicia con una pestaña abierta
+Navegador::Navegador() {
+    this->modoIncognito = false;
+    this->indiceTabActual = 0;
+    nuevoTab();
 }
 
-void Navegador::nuevaPestania() {
-    pestanias.push_back(std::make_shared<Pestania>());
-    indicePestaniaActual = static_cast<int>(pestanias.size()) - 1;
-    std::cout << "Nueva pestaña creada. Total de pestañas: " << pestanias.size() << std::endl;
+void Navegador::nuevoTab() {
+    tab.push_back(std::make_shared<Tab>());
+    indiceTabActual = static_cast<int>(tab.size()) - 1;
+    std::cout << "Nueva pestaña creada. Total de pestañas: " << tab.size() << std::endl;
 }
 
-void Navegador::cerrarPestania() {
-    if (pestanias.size() > 1) {
-        pestanias.erase(pestanias.begin() + indicePestaniaActual);
-        if (indicePestaniaActual >= static_cast<int>(pestanias.size())) {
-            indicePestaniaActual = static_cast<int>(pestanias.size()) - 1;
+void Navegador::cerrarTab() {
+    if (tab.size() > 1) {
+        tab.erase(tab.begin() + indiceTabActual);
+        if (indiceTabActual >= static_cast<int>(tab.size())) {
+            indiceTabActual = static_cast<int>(tab.size()) - 1;
         }
-        std::cout << "Pestaña cerrada. Total de pestañas: " << pestanias.size() << std::endl;
+        std::cout << "Pestaña cerrada. Total de pestañas: " << tab.size() << std::endl;
     }
     else {
         std::cout << "No se puede cerrar la única pestaña abierta." << std::endl;
     }
 }
 
-void Navegador::cambiarPestania(int direccion) {
-    if (direccion > 0 && indicePestaniaActual < static_cast<int>(pestanias.size()) - 1) {
-        ++indicePestaniaActual;
+void Navegador::cambiarTab(int direccion) {
+    if (direccion > 0 && indiceTabActual < static_cast<int>(tab.size()) - 1) {
+        ++indiceTabActual;
     }
-    else if (direccion < 0 && indicePestaniaActual > 0) {
-        --indicePestaniaActual;
+    else if (direccion < 0 && indiceTabActual > 0) {
+        --indiceTabActual;
     }
-    std::cout << "Cambiado a pestaña " << indicePestaniaActual + 1 << std::endl;
+    std::cout << "Cambiado a pestaña " << indiceTabActual + 1 << std::endl;
 }
 
-void Navegador::navegarA(const std::string& url) {
-    pestanias[indicePestaniaActual]->navegar(url);
-    std::cout << "Navegando a " << url << " en pestaña " << indicePestaniaActual + 1 << std::endl;
+void Navegador::navegarA(std::string& url) {
+   tab[indiceTabActual]->navegar(url);
+    std::cout << "Navegando a " << url << " en pestaña " << indiceTabActual + 1 << std::endl;
 }
 
 void Navegador::cambiarModoIncognito(bool incognito) {
     modoIncognito = incognito;
-    for (auto& pestania : pestanias) {
+    for (auto& pestania : tab) {
         pestania->cambiarModoIncognito(incognito);
     }
     std::cout << "Modo incógnito " << (modoIncognito ? "activado." : "desactivado.") << std::endl;
 }
 
-void Navegador::agregarMarcador(const std::string& url, const std::string& etiqueta) {
+/*void Navegador::agregarMarcador(std::string& url, std::string& etiqueta) {
     marcador.agregarMarcador(url, etiqueta);
     std::cout << "Marcador agregado para " << url << " con etiqueta '" << etiqueta << "'." << std::endl;
 }
 
 void Navegador::buscarMarcadores(const std::string& etiqueta) {
     marcador.buscarMarcadores(etiqueta);
-}
+}*/
 
 void Navegador::importarHistorial(const std::string& archivo) {
     // Falta implementar
@@ -78,4 +80,8 @@ void Navegador::mostrarMenu() {
 
 void Navegador::manejarInputUsuario() {
     // Falta implementar
+}
+
+Navegador::~Navegador()
+{
 }
