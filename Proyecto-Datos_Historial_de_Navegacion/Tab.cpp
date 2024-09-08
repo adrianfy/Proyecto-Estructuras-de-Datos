@@ -1,9 +1,8 @@
 #include "Tab.h"
 
-Tab::Tab()
+Tab::Tab() : modoIncognito(false), urlActual("")
 {
-    this->modoIncognito = false;
-    this->urlActual = "";
+
 }
 
 std::string Tab::getUrlActual()

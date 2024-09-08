@@ -20,18 +20,27 @@ void Historial::agregarEntrada(std::string& url)
 
 std::string Historial::retroceder()
 {
-	if (hayEntradasAtras()) {
-		--iteradorActual;
+	if (!historial.empty()) { 
+		return ""; 
 	}
-	return *iteradorActual;
+	if (hayEntradasAtras()) { 
+		--iteradorActual;  
+		return *iteradorActual; 
+	}
+	return""; 
 }
 
 std::string Historial::avanzar()
 {
-	if (hayEntradasAdelante()) {
-		++iteradorActual;
+	if (!historial.empty()) { 
+		return "";
 	}
-	return *iteradorActual;
+
+	if  (hayEntradasAdelante()) { 
+		++iteradorActual;
+		return *iteradorActual; 
+	}
+	return *iteradorActual; 
 }
 
 void Historial::establecerlimiteEntradas(size_t limite)
@@ -43,6 +52,9 @@ void Historial::limpiarEntradasAntiguas()
 {
 	while (historial.size() > limiteEntradas) {
 		historial.pop_front();
+		if (iteradorActual == historial.begin()) {
+			iteradorActual = historial.begin(); 
+		}
 	}
 }
 
