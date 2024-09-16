@@ -16,5 +16,7 @@ public:
 	void CambiarModo();
 	void GuardarEntradas();
 	void Ejecutar();
+
+	Tab* obtenerPestaniaActual();	
 };
 

@@ -1,28 +1,28 @@
 #include "Pagina.h"
 
-Pagina::Pagina() : url{""}, dominio{""}, titulo{""}
+Pagina::Pagina()
 {
+	this->url = "";	
+	this->dominio = "";	
 }
 
-Pagina::Pagina(std::string& Url, std::string& Dominio, std::string& Titulo) : url{Url}, dominio{Dominio}, titulo{Titulo}
+Pagina::Pagina(std::string url, std::string dominio)
 {
+	this->url = url;
+	this->dominio = dominio;
 }
 
-Pagina::~Pagina()
-{
-}
 
-std::string Pagina::getUrl() const
+std::string Pagina::getUrl()
 {
 	return url;
 }
 
-std::string Pagina::getDominio() const
+std::string Pagina::getDominio() 
 {
 	return dominio;
 }
 
-std::string Pagina::getTitulo() const
+Pagina::~Pagina()
 {
-	return titulo;
 }

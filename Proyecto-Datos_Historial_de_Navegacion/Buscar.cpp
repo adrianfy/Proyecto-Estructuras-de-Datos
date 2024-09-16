@@ -47,3 +47,10 @@ void Buscar::Ejecutar()
 		GuardarEntradas();
 	}
 }
+
+Tab* Buscar::obtenerPestaniaActual() {
+	if (tabActual >= 0 && tabActual < tabs.size()) {
+		return tabs[tabActual];
+	}
+	return nullptr;
+}

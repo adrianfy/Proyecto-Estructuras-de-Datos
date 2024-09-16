@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "Pagina.h"
 #include "Historial.h"
 
 class Tab
@@ -7,18 +9,21 @@ class Tab
 private:
 	Historial historial;
 	bool modoIncognito;
-	std::string urlActual;
+	Pagina paginaActual;
 
 public:
 	Tab();
+	Historial getHistorial();
+	Pagina getPaginaActual();
 
-	std::string getUrlActual();
-
-	void navegar(std::string& url);
+	void navegar(Pagina url);
 	void retroceder();
 	void avanzar();
 	void cambiarModoIncognito(bool incognito);
 	bool esIncognito();
+
+	std::vector<Pagina*> getHistorial() const;
+	Pagina* getPaginaActual() const;
 
 	~Tab();
 

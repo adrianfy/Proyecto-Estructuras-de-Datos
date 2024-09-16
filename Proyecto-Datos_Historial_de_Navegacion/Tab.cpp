@@ -1,21 +1,23 @@
 #include "Tab.h"
 
-Tab::Tab() : modoIncognito(false), urlActual("")
+Tab::Tab()
 {
-
+	this->historial = Historial();
+	this->modoIncognito = false;
+    this->paginaActual = nullptr;
 }
 
-std::string Tab::getUrlActual()
+Pagina* Tab::getPaginaActual()
 {
-    return urlActual;
+    return paginaActual;
 }
 
-void Tab::navegar(std::string& url)
+void Tab::navegar(Pagina& url)
 {
-    if (!modoIncognito) {
-        historial.agregarEntrada(url);
+    if (modoIncognito == false) {
+        historial.agregarEntrada(url->getUrl());
     }
-    urlActual = url;
+    paginaActual = url;
 }
 
 void Tab::retroceder()
@@ -36,6 +38,19 @@ void Tab::cambiarModoIncognito(bool incognito)
 bool Tab::esIncognito()
 {
     return modoIncognito;
+}
+
+std::vector<Pagina*> Tab::getHistorial() const
+{
+    return historial;;
+}
+
+Pagina* Tab::getPaginaActual() const
+{
+    if (indiceActual >= 0 && indiceActual < historial.size()) {
+        return historial[indiceActual];
+    }
+    return nullptr;
 }
 
 Tab::~Tab()

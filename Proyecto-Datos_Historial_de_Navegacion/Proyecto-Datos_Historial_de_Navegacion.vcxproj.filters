@@ -13,11 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Modelo">
+      <UniqueIdentifier>{e6fb24ad-dbf0-459d-9693-f3cb671ad9fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Modelo">
+      <UniqueIdentifier>{aece9433-4f1a-4454-807e-252fa1650126}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Pagina.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Marcador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -39,11 +42,11 @@
     <ClInclude Include="Navegador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Pagina.h">
+      <Filter>Archivos de encabezado\Modelo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Pagina.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Marcador.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -64,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="Navegador.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Pagina.cpp">
+      <Filter>Archivos de origen\Modelo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

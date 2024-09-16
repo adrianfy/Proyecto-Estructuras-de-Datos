@@ -140,6 +140,7 @@
     <ClCompile Include="Buscar.cpp" />
     <ClCompile Include="GestorDeMarcadores.cpp" />
     <ClCompile Include="Historial.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Marcador.cpp" />
     <ClCompile Include="Navegador.cpp" />
     <ClCompile Include="Pagina.cpp" />
