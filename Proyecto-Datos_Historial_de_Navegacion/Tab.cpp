@@ -2,32 +2,44 @@
 
 Tab::Tab()
 {
-	this->historial = Historial();
+    this->iteradorActual = historial.end();
 	this->modoIncognito = false;
-    this->paginaActual = nullptr;
+	this->paginaActual = Pagina();
 }
 
-Pagina* Tab::getPaginaActual()
+std::list<Pagina>& Tab::getHistorial()
+{
+    return historial;
+}
+
+Pagina Tab::getPaginaActual()
 {
     return paginaActual;
 }
 
-void Tab::navegar(Pagina* url)
+void Tab::navegar(Pagina& url)
 {
     if (modoIncognito == false) {
-        historial.agregarEntrada(url);
+        historial.push_back(url);
+		iteradorActual = std::prev(historial.end());
     }
     paginaActual = url;
 }
 
 void Tab::retroceder()
 {
-    urlActual = historial.retroceder();
+    if (iteradorActual != historial.begin()) {
+		iteradorActual--;
+        paginaActual = *iteradorActual;
+    }
 }
 
 void Tab::avanzar()
 {
-    urlActual = historial.avanzar();
+    if (iteradorActual != std::prev(historial.end())) {
+        iteradorActual++;
+        paginaActual = *iteradorActual;
+    }
 }
 
 void Tab::cambiarModoIncognito(bool incognito)
@@ -38,19 +50,6 @@ void Tab::cambiarModoIncognito(bool incognito)
 bool Tab::esIncognito()
 {
     return modoIncognito;
-}
-
-std::vector<Pagina*> Tab::getHistorial() const
-{
-    return historial;;
-}
-
-Pagina* Tab::getPaginaActual() const
-{
-    if (indiceActual >= 0 && indiceActual < historial.size()) {
-        return historial[indiceActual];
-    }
-    return nullptr;
 }
 
 Tab::~Tab()

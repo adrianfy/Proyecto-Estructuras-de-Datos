@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
+#include "Pagina.h"
+#include "Tab.h"
 
 class Historial
 {

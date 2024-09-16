@@ -1,31 +1,26 @@
 #pragma once
-#include <string>
-#include <vector>
+#include <list>
 #include "Pagina.h"
-#include "Historial.h"
 
 class Tab
 {
 private:
-	Historial historial;
+	std::list<Pagina> historial;
+	std::list<Pagina>::iterator iteradorActual;
 	bool modoIncognito;
-	Pagina* paginaActual;
+	Pagina paginaActual;
 
 public:
 	Tab();
-	Historial getHistorial();
-	Pagina* getPaginaActual();
+	std::list<Pagina>& getHistorial();
+	Pagina getPaginaActual();
 
-	void navegar(Pagina url);
+	void navegar(Pagina& url);
 	void retroceder();
 	void avanzar();
 	void cambiarModoIncognito(bool incognito);
 	bool esIncognito();
 
-	std::vector<Pagina*> getHistorial() const;
-	Pagina* getPaginaActual() const;
-
 	~Tab();
-
 };
 
