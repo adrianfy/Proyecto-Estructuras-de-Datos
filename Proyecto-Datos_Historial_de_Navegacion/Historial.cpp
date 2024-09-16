@@ -1,11 +1,11 @@
 #include "Historial.h"
 
-Historial::Historial() : limiteEntradas(100)
+Historial::Historial() : limiteEntrada(100)
 {
 	this->iteradorActual = historial.end();
 }
 
-void Historial::agregarEntrada(Pagina& url)
+void Historial::agregarEntrada(Tab* url)
 {
 	if (iteradorActual != historial.end()) {
 		historial.erase(std::next(iteradorActual), historial.end());
@@ -13,44 +13,46 @@ void Historial::agregarEntrada(Pagina& url)
 	historial.push_back(url);
 	iteradorActual = std::prev(historial.end());
 
-	if (historial.size() > limiteEntradas) {
+	if (historial.size() > limiteEntrada) {
 		limpiarEntradasAntiguas();
 	}
 }
 
-std::string Historial::retroceder()
+Tab* Historial::retroceder()
 {
-	if (!historial.empty()) { 
-		return ""; 
+	if (!historial.empty()) {
+		return *iteradorActual;
 	}
-	if (hayEntradasAtras()) { 
-		--iteradorActual;  
-		return *iteradorActual; 
+	if (hayEntradasAtras()) {
+		--iteradorActual;
+		return *iteradorActual;
 	}
-	return""; 
+	return nullptr;
 }
 
-std::string Historial::avanzar()
+
+
+Tab* Historial::avanzar()
 {
 	if (!historial.empty()) { 
-		return "";
+		return *iteradorActual;
 	}
 
 	if  (hayEntradasAdelante()) { 
 		++iteradorActual;
 		return *iteradorActual; 
 	}
-	return *iteradorActual; 
+	return nullptr; 
 }
 
 void Historial::establecerlimiteEntradas(size_t limite)
 {
-	limiteEntradas = limite;
+	limiteEntrada = limite;
 }
 
 void Historial::limpiarEntradasAntiguas()
 {
-	while (historial.size() > limiteEntradas) {
+	while (historial.size() > limiteEntrada) {
 		historial.pop_front();
 		if (iteradorActual == historial.begin()) {
 			iteradorActual = historial.begin(); 
@@ -70,4 +72,8 @@ bool Historial::hayEntradasAdelante()
 
 Historial::~Historial()
 {
+	for (Tab* tab : historial) {
+		delete tab;
+	}
+
 }
