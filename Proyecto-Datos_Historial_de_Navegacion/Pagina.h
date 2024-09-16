@@ -9,7 +9,7 @@ private:
 
 public:
 	Pagina();
-	Pagina(std::string Url, std::string Dominio);
+	Pagina(std::string url, std::string dominio);
 
 	std::string getUrl();
 	std::string getDominio();

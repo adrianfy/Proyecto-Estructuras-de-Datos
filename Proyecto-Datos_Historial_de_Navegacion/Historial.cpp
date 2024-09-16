@@ -5,7 +5,7 @@ Historial::Historial() : limiteEntradas(100)
 	this->iteradorActual = historial.end();
 }
 
-void Historial::agregarEntrada(std::string& url)
+void Historial::agregarEntrada(Pagina& url)
 {
 	if (iteradorActual != historial.end()) {
 		historial.erase(std::next(iteradorActual), historial.end());

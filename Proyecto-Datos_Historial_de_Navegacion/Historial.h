@@ -5,14 +5,14 @@
 class Historial
 {
 private:
-	std::list<std::string> historial;
-	std::list<std::string>::iterator iteradorActual;
+	std::list<Pagina> historial;
+	std::list<Pagina>::iterator iteradorActual;
 	size_t limiteEntradas;
 
 public:
 	Historial();
 
-	void agregarEntrada(std::string& url);
+	void agregarEntrada(Tab& url);
 	std::string retroceder();
 	std::string avanzar();
 	void establecerlimiteEntradas(size_t limite);

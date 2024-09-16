@@ -9,12 +9,12 @@ class Tab
 private:
 	Historial historial;
 	bool modoIncognito;
-	Pagina paginaActual;
+	Pagina* paginaActual;
 
 public:
 	Tab();
 	Historial getHistorial();
-	Pagina getPaginaActual();
+	Pagina* getPaginaActual();
 
 	void navegar(Pagina url);
 	void retroceder();

@@ -12,10 +12,10 @@ Pagina* Tab::getPaginaActual()
     return paginaActual;
 }
 
-void Tab::navegar(Pagina& url)
+void Tab::navegar(Pagina* url)
 {
     if (modoIncognito == false) {
-        historial.agregarEntrada(url->getUrl());
+        historial.agregarEntrada(url);
     }
     paginaActual = url;
 }
