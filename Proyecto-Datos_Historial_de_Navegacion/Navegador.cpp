@@ -5,53 +5,79 @@ Navegador::Navegador() {
 
 }
 
-void Navegador::nuevoTab() {
-    // Falta implementar
+void Navegador::ejecutar()
+{
 }
 
-void Navegador::cerrarTab() {
-    // Falta implementar
+void Navegador::mostrarMenu()
+{
 }
 
-void Navegador::cambiarTab(int direccion) {
-    // Falta implementar
+void Navegador::nuevaPestania()
+{
 }
 
-void Navegador::navegarA(std::string& url) {
-    // Falta implementar
+void Navegador::cerrarPestania()
+{
 }
 
-void Navegador::cambiarModoIncognito(bool incognito) {
-    // Falta implementar
+void Navegador::cambiarPestania(int direccion)
+{
 }
 
-/*void Navegador::agregarMarcador(std::string& url, std::string& etiqueta) {
-// Falta implementar
-}*/
-
-void Navegador::importarHistorial(const std::string& archivo) {
-    // Falta implementar
+void Navegador::navegarA(std::string& url)
+{
 }
 
-void Navegador::exportarHistorial(const std::string& archivo) {
-    // Falta implementar
+void Navegador::cambiarModoIncognito(bool incognito)
+{
 }
 
-void Navegador::importarMarcadores(const std::string& archivo) {
-    // Falta implementar
+void Navegador::agregarMarcador(std::string& url, std::string& etiqueta)
+{
 }
 
-void Navegador::exportarMarcadores(const std::string& archivo) {
-    // Falta implementar
+void Navegador::buscarMarcadores(std::string& etiqueta)
+{
 }
 
-void Navegador::mostrarMenu() {
-    // Falta implementar
+void Navegador::filtrarMarcadores(std::string& etiqueta)
+{
 }
 
-void Navegador::manejarInputUsuario() {
-    // Falta implementar
+void Navegador::importarHistorial(std::string& archivo)
+{
 }
+
+void Navegador::exportarHistorial(std::string& archivo)
+{
+}
+
+void Navegador::importarMarcadores(std::string& archivo)
+{
+}
+
+void Navegador::exportarMarcadores(std::string& archivo)
+{
+}
+
+void Navegador::mostrarHistorial()
+{
+}
+
+void Navegador::mostrarMarcadores()
+{
+}
+
+void Navegador::mostrarPestanias()
+{
+}
+
+void Navegador::manejarInputUsuario()
+{
+}
+
+
 
 Navegador::~Navegador()
 {
