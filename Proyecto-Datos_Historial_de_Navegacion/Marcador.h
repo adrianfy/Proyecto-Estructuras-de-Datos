@@ -1,16 +1,17 @@
 #pragma once
 #include"Pagina.h"
-#include<vector>
+#include<list>
+#include <algorithm>
 
 class Marcador
 {
-protected:
+private:
 	Pagina* pagina;
-	std::vector<std::string> etiquetas;
+	std::list<std::string> etiquetas;
 public: 
 	Marcador();
-	Marcador(Pagina* pagina, const std::vector<std::string>& etiquetas);
+	Marcador(Pagina* pagina, const std::list<std::string>& etiquetas);
 	Pagina* getPagina() const;
-	std::vector<std::string> getEtiquetas() const;
+	std::list<std::string> getEtiquetas() const;
 };
 

@@ -1,11 +1,14 @@
 #include "Marcador.h"
 
 Marcador::Marcador(){
-
+    pagina = nullptr;
+    etiquetas = {};
 }
 
-Marcador::Marcador(Pagina* pagina, const std::vector<std::string>& tag) : pagina{pagina}, etiquetas{ etiquetas }
+Marcador::Marcador(Pagina* pagina, const std::list<std::string>& etiquetas)
 {
+	this->pagina = pagina;
+	this->etiquetas = etiquetas;
 }
 
 Pagina* Marcador::getPagina() const
@@ -13,7 +16,7 @@ Pagina* Marcador::getPagina() const
     return pagina;
 }
 
-std::vector<std::string> Marcador::getEtiquetas() const
+std::list<std::string> Marcador::getEtiquetas() const
 {
-    return etiquetas;
+    return std::list<std::string>();
 }
