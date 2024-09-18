@@ -1,7 +1,7 @@
 #pragma once
 #include"Pagina.h"
-
 #include <algorithm>
+#include <sstream>
 
 class Marcador
 {
@@ -10,8 +10,10 @@ private:
 	std::string etiquetas;
 public: 
 	Marcador();
-	Marcador(Pagina* pagina, const std::string etiquetas);
-	Pagina* getPagina() const;
-	std::string getEtiquetas() const;
+	Marcador(Pagina* pagina, std::string etiquetas);
+	Pagina* getPagina();
+	std::string getEtiquetas();
+	std::string toString();
+	~Marcador();
 };
 

@@ -1,5 +1,9 @@
 #include "GestorDeMarcadores.h"
 
+GestorDeMarcadores::GestorDeMarcadores(){
+	marcadores = std::list<Marcador*>();
+}
+
 void GestorDeMarcadores::agregarMarcador(Marcador* marc)
 {
 	marcadores.push_back(marc);
@@ -20,5 +24,15 @@ std::list<Marcador*> GestorDeMarcadores::buscarMarcador(std::string etiquetas){
 		}
 	}
 	return marcadoresEncontrados;
+}
+
+std::string GestorDeMarcadores::toString(){
+	std::stringstream s;
+	
+	return s.str();
+}
+
+GestorDeMarcadores::~GestorDeMarcadores(){
+
 }
 
