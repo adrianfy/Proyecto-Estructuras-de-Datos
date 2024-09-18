@@ -105,8 +105,5 @@ std::string Historial::toString()
 
 Historial::~Historial()
 {
-	for (Pagina* pagina : historial) {
-		delete pagina;
-	}
 	historial.clear();
 }

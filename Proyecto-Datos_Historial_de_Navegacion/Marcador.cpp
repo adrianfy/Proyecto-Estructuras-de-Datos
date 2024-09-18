@@ -29,5 +29,4 @@ std::string Marcador::toString(){
 }
 
 Marcador::~Marcador(){
-    delete this->pagina;
 }
