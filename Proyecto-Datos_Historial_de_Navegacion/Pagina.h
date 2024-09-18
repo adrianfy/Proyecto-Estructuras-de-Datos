@@ -1,18 +1,18 @@
 #pragma once
-#include<string>
+#include <sstream>
 
 class Pagina
 {
 private:
 	std::string url;
-	std::string dominio;
 
 public:
 	Pagina();
-	Pagina(std::string url, std::string dominio);
+	Pagina(std::string url);
 
 	std::string getUrl();
-	std::string getDominio();
+
+	std::string toString();
 
 	~Pagina();
 };

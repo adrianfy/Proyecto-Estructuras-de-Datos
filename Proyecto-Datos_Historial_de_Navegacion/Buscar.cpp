@@ -2,12 +2,12 @@
 
 Buscar::Buscar() : tabActual(0), modoIncognito(false)
 {
-	tabs.push_back(new Tab()); 
+	tabs.push_back(new Pestania());
 } 
 
 Buscar::~Buscar()
 {
-	for (Tab* tab : tabs) { 
+	for (Pestania* tab : tabs) {
 		delete tab;
 	}
 }
@@ -48,7 +48,7 @@ void Buscar::Ejecutar()
 	}
 }
 
-Tab* Buscar::obtenerPestaniaActual() {
+Pestania* Buscar::obtenerPestaniaActual() {
 	if (tabActual >= 0 && tabActual < tabs.size()) {
 		return tabs[tabActual];
 	}

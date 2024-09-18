@@ -1,12 +1,12 @@
 #pragma once
 #include<Windows.h>
 #include<vector>
-#include"Tab.h"
+#include"Pestania.h"
 
 class Buscar
 {
 protected:
-	std::vector<Tab*> tabs;
+	std::vector<Pestania*> tabs;
 	int tabActual;
 	bool modoIncognito;
 public:
@@ -17,6 +17,6 @@ public:
 	void GuardarEntradas();
 	void Ejecutar();
 
-	Tab* obtenerPestaniaActual();	
+	Pestania* obtenerPestaniaActual();
 };
 

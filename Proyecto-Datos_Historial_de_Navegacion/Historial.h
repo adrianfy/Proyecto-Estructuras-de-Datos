@@ -1,27 +1,33 @@
 #pragma once
 #include <string>
 #include <list>
-#include "Tab.h"
+#include "Pagina.h"
 
 class Historial
 {
 private:
-	std::list<Tab*> historial;
-	std::list<Tab*>::iterator iteradorActual;
+	std::list<Pagina*> historial;
+	std::list<Pagina*>::iterator paginaActual;
 	size_t limiteEntrada;
-
-	
 
 public:
 	Historial();
 
-	void agregarEntrada(Tab* url);
-	Tab* retroceder();
-	Tab* avanzar();
-	void establecerlimiteEntradas(size_t limite);
-	void limpiarEntradasAntiguas();
+	void agregarEntrada(Pagina* url);
+	void inicio();
+	void fin();
+	bool estaVacio();
 	bool hayEntradasAtras();
 	bool hayEntradasAdelante();
+
+	Pagina* retroceder();
+	Pagina* avanzar();
+	void establecerlimiteEntradas(size_t limite);
+	void limpiarEntradasAntiguas();
+
+	std::list<Pagina*>& getHistorial();
+
+	std::string toString();
 
 	~Historial();
 };

@@ -19,53 +19,56 @@
     <Filter Include="Archivos de origen\Modelo">
       <UniqueIdentifier>{aece9433-4f1a-4454-807e-252fa1650126}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Contenedores">
+      <UniqueIdentifier>{bbbbdc0e-6606-4a26-b3dd-4e5846971a14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Contenedores">
+      <UniqueIdentifier>{5a045f05-b2bb-4b75-ba21-c27da8bce5b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Controlador">
+      <UniqueIdentifier>{d7d6e7ce-1bef-445c-a1ac-85f4bd7eddae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Archivos">
+      <UniqueIdentifier>{60999e37-7ced-4c0a-a194-a45b74e69d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Archivos">
+      <UniqueIdentifier>{04feb9e5-9303-4104-920d-b42421457d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Controlador">
+      <UniqueIdentifier>{14d840a3-91b5-46f7-b955-c5c9fca23bd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Marcador.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GestorDeMarcadores.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Tab.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Historial.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Buscar.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Sesion.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Navegador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Pagina.h">
       <Filter>Archivos de encabezado\Modelo</Filter>
     </ClInclude>
+    <ClInclude Include="Pestania.h">
+      <Filter>Archivos de encabezado\Modelo</Filter>
+    </ClInclude>
+    <ClInclude Include="Marcador.h">
+      <Filter>Archivos de encabezado\Modelo</Filter>
+    </ClInclude>
+    <ClInclude Include="GestorMarcador.h">
+      <Filter>Archivos de encabezado\Contenedores</Filter>
+    </ClInclude>
+    <ClInclude Include="GestorPestania.h">
+      <Filter>Archivos de encabezado\Contenedores</Filter>
+    </ClInclude>
+    <ClInclude Include="Historial.h">
+      <Filter>Archivos de encabezado\Contenedores</Filter>
+    </ClInclude>
+    <ClInclude Include="Navegador.h">
+      <Filter>Archivos de encabezado\Controlador</Filter>
+    </ClInclude>
+    <ClInclude Include="Sesion.h">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Marcador.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GestorDeMarcadores.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Tab.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Historial.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Buscar.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Sesion.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Navegador.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -73,6 +76,27 @@
     </ClCompile>
     <ClCompile Include="Pagina.cpp">
       <Filter>Archivos de origen\Modelo</Filter>
+    </ClCompile>
+    <ClCompile Include="Pestania.cpp">
+      <Filter>Archivos de origen\Modelo</Filter>
+    </ClCompile>
+    <ClCompile Include="Marcador.cpp">
+      <Filter>Archivos de origen\Modelo</Filter>
+    </ClCompile>
+    <ClCompile Include="GestorPestania.cpp">
+      <Filter>Archivos de origen\Contenedores</Filter>
+    </ClCompile>
+    <ClCompile Include="GestorMarcador.cpp">
+      <Filter>Archivos de origen\Contenedores</Filter>
+    </ClCompile>
+    <ClCompile Include="Historial.cpp">
+      <Filter>Archivos de origen\Contenedores</Filter>
+    </ClCompile>
+    <ClCompile Include="Navegador.cpp">
+      <Filter>Archivos de origen\Controlador</Filter>
+    </ClCompile>
+    <ClCompile Include="Sesion.cpp">
+      <Filter>Archivos de origen\Archivos</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

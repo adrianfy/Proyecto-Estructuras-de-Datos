@@ -1,16 +1,13 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "Tab.h"
+#include "Pestania.h"
 #include "Marcador.h"
 
 class Navegador
 {
 private:
-	std::vector<std::shared_ptr<Tab>> tab;
-	int indiceTabActual;
-	Marcador marcador;
-	bool modoIncognito;
+
 
 public:
 	Navegador();

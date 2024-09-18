@@ -2,14 +2,12 @@
 
 Pagina::Pagina()
 {
-	this->url = "";	
-	this->dominio = "";	
+	this->url = "";
 }
 
-Pagina::Pagina(std::string url, std::string dominio)
+Pagina::Pagina(std::string url)
 {
 	this->url = url;
-	this->dominio = dominio;
 }
 
 
@@ -18,9 +16,11 @@ std::string Pagina::getUrl()
 	return url;
 }
 
-std::string Pagina::getDominio() 
+std::string Pagina::toString()
 {
-	return dominio;
+	std::stringstream ss;
+	ss << "URL: " << url;
+	return ss.str();
 }
 
 Pagina::~Pagina()

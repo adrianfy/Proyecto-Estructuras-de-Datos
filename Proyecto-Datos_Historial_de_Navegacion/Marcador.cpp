@@ -2,13 +2,13 @@
 
 Marcador::Marcador(){
     pagina = nullptr;
-    etiquetas = "";
+    etiqueta = "";
 }
 
-Marcador::Marcador(Pagina* pagina,std::string etiquetas)
+Marcador::Marcador(Pagina* pagina,std::string etiqueta)
 {
 	this->pagina = pagina;
-	this->etiquetas = etiquetas;
+	this->etiqueta = etiqueta;
 }
 
 Pagina* Marcador::getPagina() 
@@ -16,15 +16,15 @@ Pagina* Marcador::getPagina()
     return pagina;
 }
 
-std::string Marcador::getEtiquetas() 
+std::string Marcador::getEtiqueta() 
 {
-    return etiquetas;
+    return etiqueta;
 }
 
 std::string Marcador::toString(){
 
    std::stringstream s;
-   s << "Marcador: " << etiquetas << std::endl;
+   s << "Etiqueta: " << etiqueta << "Pagina: "<< pagina << std::endl;
    return s.str();
 }
 

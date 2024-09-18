@@ -1,113 +1,83 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include "Tab.h"
-#include "Buscar.h"
-#include "Marcador.h"
-#include "GestorDeMarcadores.h"
-#include "Pagina.h"
+#include "Pestania.h"
+#include "GestorPestania.h"
 
 int main() {
-    Buscar buscador;
-    GestorDeMarcadores gestorDeMarcadores;
+    // Crear una pestaña para pruebas
+    Pestania pestania;
 
-    std::string opcion;
-    std::string url;
-    std::string titulo;
-    std::string dominio;
-    bool salir = false;
+    // Crear algunas páginas de prueba
+    Pagina* pagina1 = new Pagina("www.google.com");
+    Pagina* pagina2 = new Pagina("www.openai.com");
+    Pagina* pagina3 = new Pagina("www.github.com");
 
-    while (!salir) {
-        std::cout << "------ Menu del Navegador ------\n";
-        std::cout << "1. Navegar a un sitio web\n";
-        std::cout << "2. Retroceder\n";
-        std::cout << "3. Avanzar\n";
-        std::cout << "4. Cambiar modo de navegacion (Normal/Incognito)\n";
-        std::cout << "5. Agregar marcador\n";
-        std::cout << "6. Buscar marcador\n";
-        std::cout << "7. Cambiar pestaña\n";
-        std::cout << "8. Salir\n";
-        std::cout << "Seleccione una opcion: ";
-        std::cin >> opcion;
+    // Navegar a algunas páginas
+    pestania.navegar(pagina1);
+    std::cout << "Página actual: " << pestania.getPaginaActual()->toString() << std::endl;
 
-        Tab* pestañaActual = buscador.obtenerPestaniaActual();  // Obtener la pestaña actual
+    pestania.navegar(pagina2);
+    std::cout << "Página actual: " << pestania.getPaginaActual()->toString() << std::endl;
 
-        if (opcion == "1") {
-            std::cout << "Ingrese URL del sitio web: ";
-            std::cin >> url;
-            std::cout << "Ingrese el titulo de la pagina: ";
-            std::cin.ignore();
-            std::getline(std::cin, titulo);
-            std::cout << "Ingrese el dominio del sitio web: ";
-            std::cin >> dominio;
+    pestania.navegar(pagina3);
+    std::cout << "Página actual: " << pestania.getPaginaActual()->toString() << std::endl;
 
-            Pagina nuevaPagina(url, dominio);
-            if (pestañaActual) {
-                pestañaActual->navegar(url);
-                std::cout << "Navegando a: " << url << " (" << titulo << ")\n";
-            }
-            else {
-                std::cout << "Error: No se puede navegar, pestaña invalida.\n";
-            }
-        }
-        else if (opcion == "2") {
-            if (pestañaActual) {
-                pestañaActual->retroceder();
-                std::cout << "Retrocediendo a: " << pestañaActual->getUrlActual() << "\n";
-            }
-        }
-        else if (opcion == "3") {
-            if (pestañaActual) {
-                pestañaActual->avanzar();
-                std::cout << "Avanzando a: " << pestañaActual->getUrlActual() << "\n";
-            }
-        }
-        else if (opcion == "4") {
-            buscador.CambiarModo();
-            std::cout << "Modo de navegacion cambiado.\n";
-        }
-        else if (opcion == "5") {
-            std::vector<std::string> etiquetas;
-            std::string etiqueta;
-            std::cout << "Ingrese una etiqueta para el marcador (Ingrese 'fin' para terminar): ";
-            while (etiqueta != "fin") {
-                std::cin >> etiqueta;
-                if (etiqueta != "fin")
-                    etiquetas.push_back(etiqueta);
-            }
-            Pagina paginaMarcada(url, dominio);
-            Marcador* nuevoMarcador = new Marcador(&paginaMarcada, etiquetas);
-            gestorDeMarcadores.agregarMarcador(nuevoMarcador);
-            std::cout << "Marcador agregado: " << url << "\n";
-        }
-        else if (opcion == "6") {
-            std::string etiquetaBusqueda;
-            std::cout << "Ingrese la etiqueta que desea buscar: ";
-            std::cin >> etiquetaBusqueda;
-            std::vector<Marcador*> resultados = gestorDeMarcadores.buscarMarcador(etiquetaBusqueda);
-            if (!resultados.empty()) {
-                std::cout << "Marcadores encontrados:\n";
-                for (Marcador* marcador : resultados) {
-                    std::cout << marcador->getPagina()->getUrl() << " - " << marcador->getPagina()->getDominio() << "\n";
-                }
-            }
-            else {
-                std::cout << "No se encontraron marcadores con esa etiqueta.\n";
-            }
-        }
-        else if (opcion == "7") {
-            int nuevaPestania;
-            std::cout << "Ingrese el numero de pestaña: ";
-            std::cin >> nuevaPestania;
-            buscador.CambiarPestania(nuevaPestania);
-        }
-        else if (opcion == "8") {
-            salir = true;
-        }
-        else {
-            std::cout << "Opcion no valida, intente de nuevo.\n";
-        }
+    // Retroceder en el historial
+    pestania.retroceder();
+    if (pestania.getPaginaActual() != nullptr) {
+        std::cout << "Página actual después de retroceder: " << pestania.getPaginaActual()->toString() << std::endl;
     }
+    else {
+        std::cout << "No hay más páginas para retroceder.\n";
+    }
+
+    pestania.retroceder();
+    if (pestania.getPaginaActual() != nullptr) {
+        std::cout << "Página actual después de retroceder: " << pestania.getPaginaActual()->toString() << std::endl;
+    }
+    else {
+        std::cout << "No hay más páginas para retroceder.\n";
+    }
+
+    // Avanzar en el historial
+    pestania.avanzar();
+    if (pestania.getPaginaActual() != nullptr) {
+        std::cout << "Página actual después de avanzar: " << pestania.getPaginaActual()->toString() << std::endl;
+    }
+    else {
+        std::cout << "No hay más páginas para avanzar.\n";
+    }
+
+    // Mostrar historial completo
+    std::cout << "\nHistorial completo:\n" << pestania.mostrarHistorial() << std::endl;
+
+    // Crear la lista de pestañas (tabs)
+    GestorPestania listaDePestanias;
+
+    // Crear algunas pestañas y navegar a las páginas previamente creadas
+    Pestania* tab1 = new Pestania();
+    tab1->navegar(pagina1);
+    listaDePestanias.agregarPestania(tab1);
+
+    Pestania* tab2 = new Pestania();
+    tab2->navegar(pagina2);
+    listaDePestanias.agregarPestania(tab2);
+
+    Pestania* tab3 = new Pestania();
+    tab3->navegar(pagina3);
+    listaDePestanias.agregarPestania(tab3);
+
+    // Mostrar las pestañas actuales
+    std::cout << "Lista de pestañas:\n";
+    std::cout << listaDePestanias.mostrarTabs() << std::endl;
+
+    // Navegar entre pestañas
+    listaDePestanias.proximaPestania();
+    std::cout << "Pestaña actual después de avanzar:\n";
+    std::cout << listaDePestanias.mostrarTabs() << std::endl;
+
+    listaDePestanias.pestaniaAnterior();
+    std::cout << "Pestaña actual después de retroceder:\n";
+    std::cout << listaDePestanias.mostrarTabs() << std::endl;
 
     return 0;
 }

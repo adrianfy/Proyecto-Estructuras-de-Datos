@@ -2,17 +2,17 @@
 #include"Marcador.h"	
 #include <list>
 
-class GestorDeMarcadores
+class GestorMarcador
 {
 private:
 	std::list<Marcador*> marcadores;
 public:
-	GestorDeMarcadores();
+	GestorMarcador();
 	void agregarMarcador(Marcador* marca);
 	void eliminarMarcador(std::string url);
-	std::list<Marcador*> buscarMarcador(std::string etiquetas);
+	std::list<Marcador*> buscarMarcador(std::string etiqueta);
 	std::string toString();
-	~GestorDeMarcadores();
+	~GestorMarcador();
 
 };
 

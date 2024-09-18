@@ -1,18 +1,18 @@
 #pragma once
 #include"Pagina.h"
-#include <algorithm>
+//#include <algorithm>
 #include <sstream>
 
 class Marcador
 {
 private:
 	Pagina* pagina;
-	std::string etiquetas;
+	std::string etiqueta;
 public: 
 	Marcador();
-	Marcador(Pagina* pagina, std::string etiquetas);
+	Marcador(Pagina* pagina, std::string etiqueta);
 	Pagina* getPagina();
-	std::string getEtiquetas();
+	std::string getEtiqueta();
 	std::string toString();
 	~Marcador();
 };
