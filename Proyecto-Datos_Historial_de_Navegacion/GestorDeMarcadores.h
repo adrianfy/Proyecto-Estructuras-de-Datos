@@ -1,5 +1,6 @@
 #pragma once
 #include"Marcador.h"	
+#include <list>
 
 class GestorDeMarcadores
 {
