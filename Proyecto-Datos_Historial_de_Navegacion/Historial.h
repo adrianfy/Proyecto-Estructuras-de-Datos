@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
+#include <vector>
+#include <algorithm>
 #include "Pagina.h"
 
 class Historial
@@ -25,10 +27,11 @@ public:
 	void establecerlimiteEntradas(size_t limite);
 	void limpiarEntradasAntiguas();
 
+	std::vector<Pagina*> filtrarPorPalabra(std::string& palabra);
+
 	std::list<Pagina*>& getHistorial();
 
 	std::string toString();
 
 	~Historial();
 };
-

@@ -1,10 +1,13 @@
 #include <iostream>
-#include "Pestania.h"
 #include "GestorPestania.h"
 
 int main() {
     // Crear una pestaña para pruebas
     Pestania pestania;
+
+    // Crear un objeto Hora para las paginas
+    Hora* hora = new Hora();
+    std::cout << "Hora actual: " << hora->toString() << std::endl;
 
     // Crear algunas páginas de prueba
     Pagina* pagina1 = new Pagina("www.google.com");
@@ -78,6 +81,16 @@ int main() {
     listaDePestanias.pestaniaAnterior();
     std::cout << "Pestaña actual después de retroceder:\n";
     std::cout << listaDePestanias.mostrarTabs() << std::endl;
+
+
+    // Filtrado de palabras
+    std::cout << "Filtrando palabra Goo... :\n";
+    std::string palabra = "Goo";
+
+    std::vector<Pagina*> resultados = pestania.getHistorial()->filtrarPorPalabra(palabra);
+    for (Pagina* pagina : resultados) {
+        std::cout << pagina->toString() << std::endl;
+    }
 
     return 0;
 }

@@ -1,10 +1,12 @@
 #pragma once
 #include <sstream>
+#include "Hora.h"
 
 class Pagina
 {
 private:
 	std::string url;
+	Hora* marcaDeTiempo;
 
 public:
 	Pagina();
@@ -13,6 +15,7 @@ public:
 	std::string getUrl();
 
 	std::string toString();
+	std::string mostrarEnHistorial();
 
 	~Pagina();
 };

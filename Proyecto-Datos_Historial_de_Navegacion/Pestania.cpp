@@ -18,6 +18,11 @@ Pagina* Pestania::getPaginaActual() {
     return pagina;
 }
 
+Historial* Pestania::getHistorial()
+{
+    return historial;
+}
+
 void Pestania::navegar(Pagina* url) {
     if (!modoIncognito) {
         historial->agregarEntrada(url);

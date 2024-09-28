@@ -17,6 +17,7 @@ public:
     Pestania(bool modoIncognito);
 
     Pagina* getPaginaActual();
+    Historial* getHistorial();
 
     void navegar(Pagina* url);
     void retroceder();

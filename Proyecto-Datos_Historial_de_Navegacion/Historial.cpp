@@ -73,6 +73,18 @@ void Historial::limpiarEntradasAntiguas()
 	}
 }
 
+std::vector<Pagina*> Historial::filtrarPorPalabra(std::string& palabra) {
+	std::vector<Pagina*> resultado;
+
+	for (Pagina* pagina : historial) {
+		if (pagina->getUrl().find(palabra) != std::string::npos) {
+			resultado.push_back(pagina);
+		}
+	}
+
+	return resultado;
+}
+
 bool Historial::hayEntradasAtras()
 {
 	return paginaActual != historial.begin();
@@ -97,7 +109,7 @@ std::string Historial::toString()
 	std::string historialStr;
 	for (const auto& pagina : historial) {
 		if (pagina != nullptr) {
-			historialStr += "URL: " + pagina->toString() + "\n";
+			historialStr += pagina->mostrarEnHistorial() + "\n";
 		}
 	}
 	return historialStr;
