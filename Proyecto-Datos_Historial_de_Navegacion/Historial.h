@@ -34,7 +34,7 @@ public:
 
 	std::vector<Pagina*> filtrarPorPalabra(std::string& palabra);
 
-	std::list<Pagina*>& getHistorial();
+	std::list<Pagina*> getHistorial();
 
 	std::string toString();
 

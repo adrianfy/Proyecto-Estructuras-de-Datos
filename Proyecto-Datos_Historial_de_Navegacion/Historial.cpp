@@ -95,7 +95,7 @@ bool Historial::hayEntradasAdelante()
 	return paginaActual != std::prev(historial.end());
 }
 
-std::list<Pagina*>& Historial::getHistorial()
+std::list<Pagina*> Historial::getHistorial()
 {
 	return historial;
 }

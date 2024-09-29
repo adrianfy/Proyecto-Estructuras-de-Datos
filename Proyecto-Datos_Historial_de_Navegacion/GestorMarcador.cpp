@@ -44,7 +44,7 @@ void GestorMarcador::deserializar(std::ifstream& archivo)
 std::list<Marcador*> GestorMarcador::buscarMarcador(std::string etiqueta) {
 	std::list<Marcador*> marcadoresEncontrados;
 	for (auto marcador : marcadores) {
-		// Usa find() en lugar de std::find
+
 		if (marcador->getEtiqueta().find(etiqueta) != std::string::npos) {
 			marcadoresEncontrados.push_back(marcador);
 		}

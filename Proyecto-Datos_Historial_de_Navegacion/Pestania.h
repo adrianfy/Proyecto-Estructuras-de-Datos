@@ -29,9 +29,8 @@ public:
     void serializar(std::ofstream& archivo);
     Pestania* deserializar(std::ifstream& archivo);
 
-
     std::string mostrarHistorial();
-    std::string mostrarMarcadores();
+    std::string toString();
 
     ~Pestania();
 };

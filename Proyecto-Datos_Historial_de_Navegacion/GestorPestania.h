@@ -18,11 +18,11 @@ public:
     void proximaPestania();
     void pestaniaAnterior();
     Pestania* getPestaniaActual();
+    std::list<Pestania*> getPestanias();
+
     std::string mostrarTabs();
 
     void serializar(std::ofstream& archivo);
-
-    // Método para deserializar el gestor de pestañas
     void deserializar(std::ifstream& archivo);
 
 

@@ -70,6 +70,13 @@ std::string Pestania::mostrarHistorial() {
     return historial->toString();
 }
 
+std::string Pestania::toString()
+{
+    std::stringstream s;
+	s << "Visitando: " << pagina->toString() << std::endl;
+    return std::string();
+}
+
 Pestania::~Pestania() {
     delete this->historial;
 }

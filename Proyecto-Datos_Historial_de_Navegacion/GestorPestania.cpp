@@ -2,7 +2,7 @@
 
 GestorPestania::GestorPestania()
 {
-	pestaniaActual = listaPestanias.end();
+	this->pestaniaActual = listaPestanias.end();
 }
 
 void GestorPestania::agregarPestania(Pestania* pestania)
@@ -49,6 +49,11 @@ void GestorPestania::pestaniaAnterior()
 Pestania* GestorPestania::getPestaniaActual()
 {
 	return *pestaniaActual;
+}
+
+std::list<Pestania*> GestorPestania::getPestanias()
+{
+	return listaPestanias;
 }
 
 std::string GestorPestania::mostrarTabs()

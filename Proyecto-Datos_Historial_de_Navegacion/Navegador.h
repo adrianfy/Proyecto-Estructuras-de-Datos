@@ -15,9 +15,16 @@ private:
 public:
 	Navegador();
 
+	void incializarDatos();
+
 	void ejecutar();
+
+	void subMenuPestania();
+	void subMenuMarcador();
+
 	int mostrarMenuPrincipal();
 	int mostrarMenuPestania();
+	int mostrarMenuMarcador();
 
 	void navegarEntrePaginas();
 	void cambiarEntrePestanias();
@@ -29,9 +36,7 @@ public:
 	void cambiarModoIncognito(bool incognito);
 
 	void agregarMarcador(std::string& url, std::string& etiqueta);
-	void buscarMarcadores(std::string& etiqueta);
-	void filtrarMarcadores(std::string& etiqueta);
-
+	
 	void importarHistorial(std::string& archivo);
 	void exportarHistorial(std::string& archivo);
 
