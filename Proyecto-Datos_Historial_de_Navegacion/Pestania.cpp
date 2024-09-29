@@ -4,14 +4,12 @@ Pestania::Pestania() {
     this->historial = new Historial();
     this->modoIncognito = false;
     this->pagina = nullptr;
-    this->gestorMarcadores = new GestorMarcador();
 }
 
 Pestania::Pestania(bool modoIncognito) {
     this->modoIncognito = modoIncognito;
     this->historial = new Historial();
     this->pagina = nullptr;
-    this->gestorMarcadores = new GestorMarcador();
 }
 
 Pagina* Pestania::getPaginaActual() {
@@ -54,34 +52,22 @@ bool Pestania::esIncognito() {
 
 void Pestania::serializar(std::ofstream& archivo)
 {
-    size_t urlLength = pagina->getUrl().size();
-    archivo.write(reinterpret_cast<char*>(&urlLength), sizeof(urlLength)); // Escribir tamaño de la URL
-    archivo.write(pagina->getUrl().c_str(), urlLength); // Escribir contenido de la URL
+    //archivo.write(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));
 
-    archivo.write(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito)); // Escribir modo incógnito
+    historial->serializar(archivo);
 }
 
-void Pestania::deserializar(std::ifstream& archivo)
+Pestania* Pestania::deserializar(std::ifstream& archivo)
 {
-    size_t urlLength;
-    archivo.read(reinterpret_cast<char*>(&urlLength), sizeof(urlLength)); // Leer tamaño de la URL
+    /* archivo.read(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));*/
 
-    char* buffer = new char[urlLength + 1]; // Crear buffer para almacenar la URL
-    archivo.read(buffer, urlLength); // Leer contenido de la URL
-    buffer[urlLength] = '\0'; // Añadir terminador nulo
-    pagina = new Pagina(buffer); // Asignar la URL
-    delete[] buffer;
-
-    archivo.read(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito)); // Leer modo incógnito
+    Historial* historialDeserializado = new Historial();
+    historialDeserializado->deserializar(archivo);
+    return new Pestania(historialDeserializado);
 }
 
 std::string Pestania::mostrarHistorial() {
     return historial->toString();
-}
-
-std::string Pestania::mostrarMarcadores()
-{
-    return gestorMarcadores->toString();
 }
 
 Pestania::~Pestania() {

@@ -100,6 +100,28 @@ std::list<Pagina*>& Historial::getHistorial()
 	return historial;
 }
 
+void Historial::serializar(std::ofstream& archivo)
+{
+	size_t cantidadEntradas = historial.size();
+	archivo.write(reinterpret_cast<char*>(&cantidadEntradas), sizeof(cantidadEntradas));
+
+	for (auto& pagina : historial) {
+		pagina->serializar(archivo);
+	}
+}
+
+void Historial::deserializar(std::ifstream& archivo)
+{
+	size_t sitiosWeb;
+	archivo.read(reinterpret_cast<char*>(&sitiosWeb), sizeof(sitiosWeb));
+
+	for (size_t i = 0; i < sitiosWeb; ++i) {
+		Pagina* sitioWeb = new Pagina();
+		sitioWeb->deserializar(archivo); // Llamar a la deserialización de cada marcador
+		historial.push_back(sitioWeb);
+	}
+}
+
 std::string Historial::toString()
 {
 	if (historial.empty()) {

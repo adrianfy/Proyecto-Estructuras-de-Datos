@@ -26,6 +26,22 @@ int Hora::getMinuto()
     return minuto;
 }
 
+void Hora::serializar(std::ofstream& archivo)
+{
+    archivo.write(reinterpret_cast<char*>(&hora), sizeof(hora));
+    archivo.write(reinterpret_cast<char*>(&minuto), sizeof(minuto));
+}
+
+Hora* Hora::deserializar(std::ifstream& archivo)
+{
+    int hora, minuto;
+
+    archivo.read(reinterpret_cast<char*>(&hora), sizeof(hora));
+    archivo.read(reinterpret_cast<char*>(&minuto), sizeof(minuto));
+
+    return new Hora(hora, minuto);
+}
+
 std::string Hora::toString()
 {
     std::stringstream s;

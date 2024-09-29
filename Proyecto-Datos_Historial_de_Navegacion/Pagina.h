@@ -15,6 +15,10 @@ public:
 	std::string getUrl();
 	void setUrl(std::string url);
 
+	void setMarcaDeTiempo(Hora* hora);
+	void serializar(std::ofstream& archivo);
+	Pagina* deserializar(std::ifstream& archivo);
+
 	std::string toString();
 	std::string mostrarEnHistorial();
 

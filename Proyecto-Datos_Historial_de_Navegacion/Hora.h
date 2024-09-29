@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <fstream>
 
 class Hora
 {
@@ -14,6 +15,9 @@ public:
 
 	int getHora();
 	int getMinuto();
+
+	void serializar(std::ofstream& archivo);
+	static Hora* deserializar(std::ifstream& archivo);
 
 	std::string toString();
 	~Hora();

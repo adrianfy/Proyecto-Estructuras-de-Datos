@@ -1,9 +1,11 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <list>
 #include <vector>
 #include <algorithm>
 #include "Pagina.h"
+#include <fstream>
 
 class Historial
 {
@@ -26,6 +28,9 @@ public:
 	Pagina* avanzar();
 	void establecerlimiteEntradas(size_t limite);
 	void limpiarEntradasAntiguas();
+
+	void serializar(std::ofstream& archivo);
+	void deserializar(std::ifstream& archivo);
 
 	std::vector<Pagina*> filtrarPorPalabra(std::string& palabra);
 

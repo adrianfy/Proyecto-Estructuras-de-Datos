@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Historial.h"
 #include "GestorMarcador.h"
+#include <iostream>
 
 class Pestania
 {
@@ -26,7 +27,7 @@ public:
     bool esIncognito();
 
     void serializar(std::ofstream& archivo);
-    void deserializar(std::ifstream& archivo);
+    Pestania* deserializar(std::ifstream& archivo);
 
 
     std::string mostrarHistorial();

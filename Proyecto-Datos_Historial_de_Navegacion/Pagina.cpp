@@ -20,7 +20,42 @@ std::string Pagina::getUrl()
 
 void Pagina::setUrl(std::string url)
 {
-	this->url = url;
+    this->url = url;
+}
+
+void Pagina::setMarcaDeTiempo(Hora* hora)
+{
+    this->marcaDeTiempo = hora;
+}
+
+void Pagina::serializar(std::ofstream& archivo)
+{
+    size_t urlLength = url.length();
+    archivo.write(reinterpret_cast<char*>(&urlLength), sizeof(urlLength));  // Escribir la longitud de la URL
+    archivo.write(url.c_str(), urlLength);  // Escribir la URL
+
+    // Serializar la marca de tiempo
+    marcaDeTiempo->serializar(archivo);
+}
+
+Pagina* Pagina::deserializar(std::ifstream& archivo)
+{
+    size_t urlLength;
+    archivo.read(reinterpret_cast<char*>(&urlLength), sizeof(urlLength));  // Leer la longitud de la URL
+
+    char* buffer = new char[urlLength + 1];
+    archivo.read(buffer, urlLength);  // Leer la URL
+    buffer[urlLength] = '\0';
+    url = std::string(buffer);
+    delete[] buffer;
+
+    // Deserializar la marca de tiempo
+    marcaDeTiempo = marcaDeTiempo->deserializar(archivo);
+
+    Pagina* p = new Pagina(url);
+    p->setMarcaDeTiempo(marcaDeTiempo);
+
+    return p;
 }
 
 std::string Pagina::toString()

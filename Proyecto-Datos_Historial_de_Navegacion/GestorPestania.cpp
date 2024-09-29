@@ -56,12 +56,32 @@ std::string GestorPestania::mostrarTabs()
 	std::stringstream ss;
 	int contador = 1;
 
+	if (listaPestanias.empty()) {
+		ss << "No hay pestañas abiertas." << std::endl;
+		return ss.str();
+	}
+
 	for (auto it = listaPestanias.begin(); it != listaPestanias.end(); ++it) {
-		if (it == pestaniaActual) {
-			ss << "-> Pestaña " << contador << " (Actual): " << (*it)->getPaginaActual()->toString() << std::endl;
+		if (*it == nullptr) {
+			ss << "Pestaña " << contador << ": (Pestaña inválida)" << std::endl;
+		}
+		else if (it == pestaniaActual) {
+			Pagina* paginaActual = (*it)->getPaginaActual();
+			if (paginaActual != nullptr) {
+				ss << "-> Pestaña " << contador << " (Actual): " << paginaActual->toString() << std::endl;
+			}
+			else {
+				ss << "-> Pestaña " << contador << " (Actual): Página actual no disponible" << std::endl;
+			}
 		}
 		else {
-			ss << "Pestaña " << contador << ": " << (*it)->getPaginaActual()->toString() << std::endl;
+			Pagina* paginaActual = (*it)->getPaginaActual();
+			if (paginaActual != nullptr) {
+				ss << "Pestaña " << contador << ": " << paginaActual->toString() << std::endl;
+			}
+			else {
+				ss << "Pestaña " << contador << ": Página actual no disponible" << std::endl;
+			}
 		}
 		++contador;
 	}
@@ -74,8 +94,8 @@ void GestorPestania::serializar(std::ofstream& archivo)
 	size_t cantidadPestanias = listaPestanias.size();
 	archivo.write(reinterpret_cast<char*>(&cantidadPestanias), sizeof(cantidadPestanias));
 
-	for (Pestania* p : listaPestanias) {
-		p->serializar(archivo); // Llamar a la serialización de cada pestaña
+	for (Pestania* pestania : listaPestanias) {
+		pestania->serializar(archivo);
 	}
 }
 
@@ -86,7 +106,7 @@ void GestorPestania::deserializar(std::ifstream& archivo)
 
 	for (size_t i = 0; i < cantidadPestanias; ++i) {
 		Pestania* nuevaPestania = new Pestania();
-		nuevaPestania->deserializar(archivo); // Llamar a la deserialización de cada pestaña
+		nuevaPestania->deserializar(archivo); // Llamar a la deserialización de cada marcador
 		listaPestanias.push_back(nuevaPestania);
 	}
 }
