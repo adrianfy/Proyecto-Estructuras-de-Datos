@@ -148,7 +148,6 @@
     <ClCompile Include="Marcador.cpp" />
     <ClCompile Include="Navegador.cpp" />
     <ClCompile Include="Pagina.cpp" />
-    <ClCompile Include="Sesion.cpp" />
     <ClCompile Include="Pestania.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

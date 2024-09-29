@@ -44,12 +44,35 @@ void Pestania::avanzar() {
     }
 }
 
-//void Pestania::cambiarModoIncognito(bool incognito) {
-//    modoIncognito = incognito;
-//}
+void Pestania::cambiarModoIncognito(bool incognito) {
+    this->modoIncognito = incognito;
+}
 
 bool Pestania::esIncognito() {
     return modoIncognito;
+}
+
+void Pestania::serializar(std::ofstream& archivo)
+{
+    size_t urlLength = pagina->getUrl().size();
+    archivo.write(reinterpret_cast<char*>(&urlLength), sizeof(urlLength)); // Escribir tamaño de la URL
+    archivo.write(pagina->getUrl().c_str(), urlLength); // Escribir contenido de la URL
+
+    archivo.write(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito)); // Escribir modo incógnito
+}
+
+void Pestania::deserializar(std::ifstream& archivo)
+{
+    size_t urlLength;
+    archivo.read(reinterpret_cast<char*>(&urlLength), sizeof(urlLength)); // Leer tamaño de la URL
+
+    char* buffer = new char[urlLength + 1]; // Crear buffer para almacenar la URL
+    archivo.read(buffer, urlLength); // Leer contenido de la URL
+    buffer[urlLength] = '\0'; // Añadir terminador nulo
+    pagina = new Pagina(buffer); // Asignar la URL
+    delete[] buffer;
+
+    archivo.read(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito)); // Leer modo incógnito
 }
 
 std::string Pestania::mostrarHistorial() {

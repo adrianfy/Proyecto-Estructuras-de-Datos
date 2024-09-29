@@ -18,10 +18,15 @@ std::string Pagina::getUrl()
     return url;
 }
 
+void Pagina::setUrl(std::string url)
+{
+	this->url = url;
+}
+
 std::string Pagina::toString()
 {
     std::stringstream ss;
-    ss << "URL: " << url;
+    ss << url;
     return ss.str();
 }
 

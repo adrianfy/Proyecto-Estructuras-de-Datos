@@ -2,6 +2,7 @@
 #include "Pestania.h"
 #include <list>
 #include <iostream>
+#include <fstream>
 
 class GestorPestania
 {
@@ -18,6 +19,12 @@ public:
     void pestaniaAnterior();
     Pestania* getPestaniaActual();
     std::string mostrarTabs();
+
+    void serializar(std::ofstream& archivo);
+
+    // Método para deserializar el gestor de pestañas
+    void deserializar(std::ifstream& archivo);
+
 
     ~GestorPestania();
 };

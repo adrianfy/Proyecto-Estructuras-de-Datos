@@ -13,6 +13,7 @@ public:
 	Pagina(std::string url);
 
 	std::string getUrl();
+	void setUrl(std::string url);
 
 	std::string toString();
 	std::string mostrarEnHistorial();

@@ -3,22 +3,28 @@
 #include <memory>
 #include <iostream>
 #include "GestorPestania.h"
+#include "GestorMarcador.h"
+#include "Sesion.h"
 
 class Navegador
 {
 private:
 	GestorPestania* gestorPestania;
-	//Historial* historial;
+	GestorMarcador* gestorMarcador;
 
 public:
 	Navegador();
 
 	void ejecutar();
-	void mostrarMenu();
+	int mostrarMenuPrincipal();
+	int mostrarMenuPestania();
+
+	void navegarEntrePaginas();
+	void cambiarEntrePestanias();
 	
 	void nuevaPestania();
 	void cerrarPestania();	
-	void cambiarPestania(int direccion);
+	/*void cambiarPestania(int direccion);*/
 	void navegarA(std::string& url);
 	void cambiarModoIncognito(bool incognito);
 

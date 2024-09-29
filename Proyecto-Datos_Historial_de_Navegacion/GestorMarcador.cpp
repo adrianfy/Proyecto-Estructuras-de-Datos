@@ -19,6 +19,27 @@ void GestorMarcador::eliminarMarcador(std::string url) {
 		});
 }
 
+void GestorMarcador::serializar(std::ofstream& archivo)
+{
+	size_t cantidadMarcadores = marcadores.size();
+	archivo.write(reinterpret_cast<char*>(&cantidadMarcadores), sizeof(cantidadMarcadores));
+
+	for (Marcador* m : marcadores) {
+		m->serializar(archivo); // Llamar a la serialización de cada marcador
+	}
+}
+
+void GestorMarcador::deserializar(std::ifstream& archivo)
+{
+	size_t cantidadMarcadores;
+	archivo.read(reinterpret_cast<char*>(&cantidadMarcadores), sizeof(cantidadMarcadores));
+
+	for (size_t i = 0; i < cantidadMarcadores; ++i) {
+		Marcador* nuevoMarcador = new Marcador();
+		nuevoMarcador->deserializar(archivo); // Llamar a la deserialización de cada marcador
+		marcadores.push_back(nuevoMarcador);
+	}
+}
 
 std::list<Marcador*> GestorMarcador::buscarMarcador(std::string etiqueta) {
 	std::list<Marcador*> marcadoresEncontrados;
@@ -35,10 +56,16 @@ std::list<Marcador*> GestorMarcador::buscarMarcador(std::string etiqueta) {
 
 std::string GestorMarcador::toString(){
 	std::stringstream s;
+	if (marcadores.empty()) {
+		s << "No hay marcadores" << std::endl;
+		return s.str();
+	}
+
 	for (auto marcador : marcadores) {
 		s << marcador->toString() << std::endl;
 	}
 	return s.str();
+
 }
 
 GestorMarcador::~GestorMarcador() {

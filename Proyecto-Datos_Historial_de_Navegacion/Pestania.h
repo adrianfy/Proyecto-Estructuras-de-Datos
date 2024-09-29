@@ -22,8 +22,12 @@ public:
     void navegar(Pagina* url);
     void retroceder();
     void avanzar();
-    //void cambiarModoIncognito(bool incognito);
+    void cambiarModoIncognito(bool incognito);
     bool esIncognito();
+
+    void serializar(std::ofstream& archivo);
+    void deserializar(std::ifstream& archivo);
+
 
     std::string mostrarHistorial();
     std::string mostrarMarcadores();
