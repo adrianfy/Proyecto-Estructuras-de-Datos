@@ -100,6 +100,21 @@ std::list<Pagina*> Historial::getHistorial()
 	return historial;
 }
 
+std::vector<std::string> Historial::getPaginas()
+{
+	std::vector<std::string> paginas;
+
+	for (const auto& pagina : historial)
+	{
+		if (pagina != nullptr)
+		{
+			paginas.push_back(pagina->getUrl());
+		}
+	}
+
+	return paginas;
+}
+
 void Historial::serializar(std::ofstream& archivo)
 {
 	size_t cantidadEntradas = historial.size();

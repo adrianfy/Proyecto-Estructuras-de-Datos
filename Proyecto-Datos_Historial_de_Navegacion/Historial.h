@@ -36,6 +36,8 @@ public:
 
 	std::list<Pagina*> getHistorial();
 
+	std::vector<std::string> getPaginas(); 
+
 	std::string toString();
 
 	~Historial();

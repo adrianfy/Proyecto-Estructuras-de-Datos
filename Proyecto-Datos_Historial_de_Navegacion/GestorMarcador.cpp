@@ -41,6 +41,11 @@ void GestorMarcador::deserializar(std::ifstream& archivo)
 	}
 }
 
+std::list<Marcador*> GestorMarcador::getMarcadores()
+{
+	return marcadores; 
+}
+
 std::list<Marcador*> GestorMarcador::buscarMarcador(std::string etiqueta) {
 	std::list<Marcador*> marcadoresEncontrados;
 	for (auto marcador : marcadores) {

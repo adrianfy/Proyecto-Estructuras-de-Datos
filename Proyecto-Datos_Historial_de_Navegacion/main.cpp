@@ -1,6 +1,11 @@
 #include <iostream>
 #include "Navegador.h"
 
+//Esto tambien nos lo dio la IA
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
 
 int main() {
 
@@ -8,6 +13,10 @@ int main() {
 
 	Navegador* navegador = new Navegador();
 	navegador->ejecutar();
+
+
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);  //Usamos esto para comprobar si existen memory leaks, codigo sacado por IA.
+
 
 	//Sesion* sesion = new Sesion();
 

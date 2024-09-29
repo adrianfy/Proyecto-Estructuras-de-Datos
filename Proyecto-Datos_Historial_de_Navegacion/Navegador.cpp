@@ -281,13 +281,16 @@ int Navegador::mostrarMenuPrincipal()
 {
 	system("cls");  // Limpiar pantalla
 
-	std::cout << "\n--- Menu Principal ---\n";
-	std::cout << "1. Abrir nueva pestaña\n";
-	std::cout << "2. Moverse entre pestañas\n";
-	std::cout << "3. Gestionar marcadores\n";
-	std::cout << "4. Mostrar historial general\n";
-	std::cout << "5. Importar/Exportar historial\n";
-	std::cout << "6. Salir\n";
+	std::cout << "[-------------------------------]\n";
+	std::cout << "|        Menu Principal         |\n";
+	std::cout << "|-------------------------------|\n";
+	std::cout << "|1. Abrir nueva pestaña         |\n";
+	std::cout << "|2. Moverse entre pestañas      |\n";
+	std::cout << "|3. Gestionar marcadores        |\n";
+	std::cout << "|4. Mostrar historial general   |\n";
+	std::cout << "|5. Importar/Exportar historial |\n";
+	std::cout << "|6. Salir                       |\n";
+	std::cout << "[-------------------------------]\n";
 	
 
 	return EntradaUsuario::obtenerSeleccionInt();
@@ -297,13 +300,16 @@ int Navegador::mostrarMenuPestania()
 {
 	system("cls");  // Limpiar pantalla
 	
-	std::cout << "\n--- Nueva Pestaña ---\n";
-	std::cout << "1. Ingresar dirección de sitio web.\n";
-	std::cout << "2. Avanzar o Retroceder.\n";
-	std::cout << "3. Acceder a un marcador.\n";
-	std::cout << "4. Cambiar a modo incognito.\n";
-	std::cout << "5. Imprimir historial de la pestaña.\n";
-	std::cout << "6. Regresar al menú principal\n";
+	std::cout << "[------------------------------------]\n";
+	std::cout << "|            Nueva Pestaña           |\n";
+	std::cout << "|------------------------------------|\n";
+	std::cout << "|1. Ingresar dirección de sitio web. |\n";
+	std::cout << "|2. Avanzar o Retroceder.            |\n";
+	std::cout << "|3. Acceder a un marcador.           |\n";
+	std::cout << "|4. Cambiar a modo incognito.        |\n";
+	std::cout << "|5. Imprimir historial de la pestaña.|\n";
+	std::cout << "|6. Regresar al menú principal       |\n";
+	std::cout << "[------------------------------------]\n";
 
 
 	return EntradaUsuario::obtenerSeleccionInt();
@@ -313,11 +319,14 @@ int Navegador::mostrarMenuMarcador()
 {
 	system("cls");  // Limpiar pantalla
 	
-	std::cout << "\n--- Menu Marcador ---\n";
-	std::cout << "1. Agregar marcador\n";
-	std::cout << "2. Buscar marcador\n";
-	std::cout << "3. Eliminar marcador\n";
-	std::cout << "4. Regresar al menú principal\n";
+	std::cout << "[-----------------------------]\n";
+	std::cout << "|        Menu Marcador        |\n";
+	std::cout << "|-----------------------------|\n";
+	std::cout << "|1. Agregar marcador          |\n";
+	std::cout << "|2. Buscar marcador           |\n";
+	std::cout << "|3. Eliminar marcador         |\n";
+	std::cout << "|4. Regresar al menú principal|\n";
+	std::cout << "[-----------------------------]\n";
 
 
 
@@ -338,7 +347,14 @@ void Navegador::navegarEntrePaginas()
 		// Detección de la tecla flecha izquierda para retroceder
 		if (GetAsyncKeyState(VK_LEFT)) {
 			pestaniaActual->retroceder();
-			system("cls");  // Limpiar pantalla
+			system("cls");
+			std::cout << "[--------------------------------------------]\n";
+			std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
+			std::cout << "|--------------------------------------------|\n";
+			std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
+			std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
+			std::cout << "|Tecla ESC para salir de la pestania         |\n";
+			std::cout << "[--------------------------------------------]\n\n";
 			std::cout << "Retrocediendo..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
@@ -353,6 +369,13 @@ void Navegador::navegarEntrePaginas()
 		if (GetAsyncKeyState(VK_RIGHT)) {
 			pestaniaActual->avanzar();
 			system("cls");
+			std::cout << "[--------------------------------------------]\n";
+			std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
+			std::cout << "|--------------------------------------------|\n";
+			std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
+			std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
+			std::cout << "|Tecla ESC para salir de la pestania         |\n";
+			std::cout << "[--------------------------------------------]\n\n";
 			std::cout << "Avanzando..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
@@ -379,6 +402,13 @@ void Navegador::cambiarEntrePestanias()
 		if (GetAsyncKeyState(VK_UP)) {
 			gestorPestania->pestaniaAnterior();
 			system("cls");
+			std::cout << "[----------------------------------------]\n";
+			std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
+			std::cout << "|----------------------------------------|\n";
+			std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
+			std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
+			std::cout << "|Tecla ESC para salir de la pestania     |\n";
+			std::cout << "[----------------------------------------]\n\n";
 			std::cout << "Pestaña anterior seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
 			Sleep(200);
@@ -387,6 +417,13 @@ void Navegador::cambiarEntrePestanias()
 		if (GetAsyncKeyState(VK_DOWN)) {
 			gestorPestania->proximaPestania();
 			system("cls");
+			std::cout << "[----------------------------------------]\n";
+			std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
+			std::cout << "|----------------------------------------|\n";
+			std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
+			std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
+			std::cout << "|Tecla ESC para salir de la pestania     |\n";
+			std::cout << "[----------------------------------------]\n\n";
 			std::cout << "Pestaña siguiente seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
 			Sleep(200);
@@ -457,19 +494,97 @@ void Navegador::agregarMarcador(std::string& url, std::string& etiqueta)
 
 void Navegador::importarHistorial(std::string& archivo)
 {
+	std::ifstream file(archivo);
 
+	if (!file.is_open()) {
+		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		return;
+	}
+
+	std::string url;
+	while (getline(file, url)) {
+		if (!url.empty()) {
+			Pagina* pagina = new Pagina(url);
+
+			Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
+			if (pestaniaActual) {
+				pestaniaActual->navegar(pagina);
+			}
+			else {
+				std::cout << "No hay pestaña activa para importar el historial." << std::endl;
+			}
+		}
+	}
+
+	file.close();
+	std::cout << "Historial importado correctamente desde " << archivo << std::endl;
 }
 
 void Navegador::exportarHistorial(std::string& archivo)
 {
+	std::ofstream outputFile(archivo);
+
+	if (!outputFile.is_open()) {
+		std::cout << "Error al abrir el archivo " << std::endl;
+		return;
+	}
+
+	std::list<Pestania*> listaPestanias = gestorPestania->getPestanias();
+	for (Pestania* pestania : listaPestanias) {
+		Historial* historial = pestania->getHistorial();
+		if (historial) {
+			std::vector<std::string> paginas = historial->getPaginas();
+			for (const std::string& pagina : paginas) {
+				outputFile << pagina << std::endl;
+			}
+		}
+	}
+
+	outputFile.close();
+	std::cout << "Historial exportado correctamente a " << archivo << std::endl;
 }
 
 void Navegador::importarMarcadores(std::string& archivo)
 {
+	std::ifstream file(archivo);
+
+	if (!file.is_open()) {
+		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		return;
+	}
+
+	std::string linea;
+	while (getline(file, linea)) {
+		std::stringstream ss(linea);
+		std::string url, etiqueta;
+
+		ss >> url >> etiqueta;
+
+		Pagina* pagina = new Pagina(url);
+		Marcador* marcador = new Marcador(pagina, etiqueta);
+		gestorMarcador->agregarMarcador(marcador);
+	}
+
+	file.close();
+	std::cout << "Marcadores importados correctamente desde " << archivo << std::endl;
 }
 
 void Navegador::exportarMarcadores(std::string& archivo)
 {
+	std::ofstream file(archivo);
+
+	if (!file.is_open()) {
+		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		return;
+	}
+
+	std::list<Marcador*> listaMarcadores = gestorMarcador->getMarcadores();
+	for (Marcador* marcador : listaMarcadores) {
+		file << marcador->getPagina()->getUrl() << " " << marcador->getEtiqueta() << std::endl;
+	}
+
+	file.close();
+	std::cout << "Marcadores exportados correctamente a " << archivo << std::endl;
 }
 
 void Navegador::mostrarHistorial() {
