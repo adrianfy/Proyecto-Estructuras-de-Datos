@@ -280,7 +280,7 @@ void Navegador::subMenuMarcador()
 int Navegador::mostrarMenuPrincipal()
 {
 	system("cls");  // Limpiar pantalla
-	int opcion;
+
 	std::cout << "\n--- Menu Principal ---\n";
 	std::cout << "1. Abrir nueva pestaña\n";
 	std::cout << "2. Moverse entre pestañas\n";
@@ -288,16 +288,15 @@ int Navegador::mostrarMenuPrincipal()
 	std::cout << "4. Mostrar historial general\n";
 	std::cout << "5. Importar/Exportar historial\n";
 	std::cout << "6. Salir\n";
-	std::cout << "Seleccione una opción: ";
-	std::cin >> opcion;
+	
 
-	return opcion;
+	return EntradaUsuario::obtenerSeleccionInt();
 }
 
 int Navegador::mostrarMenuPestania()
 {
 	system("cls");  // Limpiar pantalla
-	int opcion;
+	
 	std::cout << "\n--- Nueva Pestaña ---\n";
 	std::cout << "1. Ingresar dirección de sitio web.\n";
 	std::cout << "2. Avanzar o Retroceder.\n";
@@ -306,28 +305,23 @@ int Navegador::mostrarMenuPestania()
 	std::cout << "5. Imprimir historial de la pestaña.\n";
 	std::cout << "6. Regresar al menú principal\n";
 
-	std::cout << "Seleccione una opción: ";
 
-	std::cin >> opcion;
-
-	return opcion;
+	return EntradaUsuario::obtenerSeleccionInt();
 }
 
 int Navegador::mostrarMenuMarcador()
 {
 	system("cls");  // Limpiar pantalla
-	int opcion;
+	
 	std::cout << "\n--- Menu Marcador ---\n";
 	std::cout << "1. Agregar marcador\n";
 	std::cout << "2. Buscar marcador\n";
 	std::cout << "3. Eliminar marcador\n";
 	std::cout << "4. Regresar al menú principal\n";
 
-	std::cout << "Seleccione una opción: ";
 
-	std::cin >> opcion;
 
-	return opcion;
+	return EntradaUsuario::obtenerSeleccionInt();
 }
 
 void Navegador::navegarEntrePaginas()
@@ -509,11 +503,6 @@ void Navegador::mostrarMarcadores()
 void Navegador::mostrarPestanias()
 {
 }
-
-void Navegador::manejarInputUsuario()
-{
-}
-
 
 
 Navegador::~Navegador()

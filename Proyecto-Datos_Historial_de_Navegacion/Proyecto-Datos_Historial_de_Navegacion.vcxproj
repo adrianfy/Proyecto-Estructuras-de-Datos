@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Buscar.h" />
+    <ClInclude Include="EntradaUsuario.h" />
     <ClInclude Include="GestorMarcador.h" />
     <ClInclude Include="GestorPestania.h" />
     <ClInclude Include="Historial.h" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buscar.cpp" />
+    <ClCompile Include="EntradaUsuario.cpp" />
     <ClCompile Include="GestorMarcador.cpp" />
     <ClCompile Include="GestorPestania.cpp" />
     <ClCompile Include="Historial.cpp" />

@@ -5,6 +5,7 @@
 #include "GestorPestania.h"
 #include "GestorMarcador.h"
 #include "Sesion.h"
+#include "EntradaUsuario.h"
 
 class Navegador
 {
@@ -47,7 +48,6 @@ public:
 	void mostrarMarcadores();
 	void mostrarPestanias();
 
-	void manejarInputUsuario();
 
 	~Navegador();
 };

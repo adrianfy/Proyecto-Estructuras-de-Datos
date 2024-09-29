@@ -69,6 +69,9 @@
     <ClInclude Include="Hora.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="EntradaUsuario.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buscar.cpp">
@@ -98,10 +101,10 @@
     <ClCompile Include="Navegador.cpp">
       <Filter>Archivos de origen\Controlador</Filter>
     </ClCompile>
-    <ClCompile Include="Sesion.cpp">
-      <Filter>Archivos de origen\Archivos</Filter>
-    </ClCompile>
     <ClCompile Include="Hora.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="EntradaUsuario.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
