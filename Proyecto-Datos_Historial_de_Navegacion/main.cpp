@@ -31,7 +31,6 @@ int main() {
     Pagina* pagina6 = new Pagina("www.aulavirtual.com");
 	Pagina* pagina7 = new Pagina("www.onlyfans.com");
 
-
     // Navegar a algunas páginas
     pestania->navegar(pagina1);
     std::cout << "Página actual: " << pestania->getPaginaActual()->toString() << std::endl;
@@ -101,8 +100,6 @@ int main() {
 	for (auto marcador : marcadoresFiltrados) {
 		std::cout << marcador->toString() << std::endl;
 	}
-
-
 
     // Crear algunas pestañas y navegar a las páginas previamente creadas
     Pestania* tab1 = new Pestania();
