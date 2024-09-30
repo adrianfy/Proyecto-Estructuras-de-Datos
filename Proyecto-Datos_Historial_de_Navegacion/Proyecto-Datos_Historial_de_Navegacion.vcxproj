@@ -133,6 +133,7 @@
     <ClInclude Include="GestorPestania.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Hora.h" />
+    <ClInclude Include="Interfaz.h" />
     <ClInclude Include="Marcador.h" />
     <ClInclude Include="Navegador.h" />
     <ClInclude Include="Pagina.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="GestorPestania.cpp" />
     <ClCompile Include="Historial.cpp" />
     <ClCompile Include="Hora.cpp" />
+    <ClCompile Include="Interfaz.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Marcador.cpp" />
     <ClCompile Include="Navegador.cpp" />

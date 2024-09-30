@@ -3,6 +3,7 @@
 #include <sstream>
 #include <ctime>
 #include <fstream>
+#include <iostream>
 
 class Hora
 {
