@@ -86,7 +86,7 @@ void Navegador::incializarDatos()
 void Navegador::ejecutar()
 {
 
-	/*sesion->cargarSesion(gestorPestania, gestorMarcador);*/
+	sesion->cargarSesion(gestorPestania, gestorMarcador);
 	incializarDatos();
 
 	bool enEjecucion = true; // Controla el ciclo principal del navegador
@@ -121,26 +121,36 @@ void Navegador::ejecutar()
 		}
 		case 5:
 		{
+			filtrarHistorial();
+			system("pause");
+			break;
+		}
+		case 6:
+		{
 			// Importar o exportar historial
-			std::string archivo;
-			std::cout << "Ingrese el nombre del archivo: ";
-			std::cin >> archivo;
+			//std::string archivo;
+			//std::cout << "Ingrese el nombre del archivo: ";
+			//std::cin >> archivo;
 			std::cout << "1. Importar\n2. Exportar\nSeleccione: ";
 			int opcionArchivo;
 			std::cin >> opcionArchivo;
 
 			if (opcionArchivo == 1) {
-				importarHistorial(archivo);
+				importarHistorial();
+				std::cout << "Historial importado de: historialPestania.bin" << std::endl;
+				system("pause");
 			}
 			else if (opcionArchivo == 2) {
-				exportarHistorial(archivo);
+				exportarHistorial();
+				std::cout << "Historial exportado a: historialPestania.bin" << std::endl;
+				system("pause");
 			}
 			else {
 				interfaz->opcionNoValida();
 			}
 			break;
 		}
-		case 6:
+		case 7:
 		{
 			// Salir
 			enEjecucion = false;
@@ -151,7 +161,7 @@ void Navegador::ejecutar()
 			interfaz->opcionNoValida();
 		}
 	}
-	//sesion->guardarSesion(gestorPestania, gestorMarcador);
+	sesion->guardarSesion(gestorPestania, gestorMarcador);
 }
 
 void Navegador::subMenuPestania()
@@ -167,8 +177,10 @@ void Navegador::subMenuPestania()
 		case 1:
 		{
 			// Ingresar dirección de sitio web
-			Pestania* pestania = new Pestania();
-			gestorPestania->agregarPestania(pestania);
+			if (gestorPestania->getPestaniaActual() == nullptr) {
+				Pestania* pestania = new Pestania();
+				gestorPestania->agregarPestania(pestania);
+			}
 
 			std::string url;
 			std::cout << "Ingrese URL: ";
@@ -305,7 +317,14 @@ int Navegador::mostrarMenuPestania()
 	system("cls");  // Limpiar pantalla
 
 	std::cout << "[------------------------------------------------]\n";
-	std::cout << "\033[1;32m    Actualmente en la pagina:\033[0m " << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << "   \n";
+	if (gestorPestania && gestorPestania->getPestaniaActual()) {
+		std::cout << "\033[1;32m    Actualmente en la pagina:\033[0m " << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << "   \n";
+	}
+	else {
+		std::cerr << "               Buscando una pagina...\n";
+	}
+
+	
 	std::cout << "|------------------------------------------------|\n";
 	std::cout << "|      1. Ingresar dirección de sitio web.       |\n";
 	std::cout << "|      2. Avanzar o Retroceder.                  |\n";
@@ -423,6 +442,40 @@ void Navegador::cerrarPestania()
 	std::cout << "Pestaña cerrada." << std::endl;
 }
 
+void Navegador::filtrarHistorial()
+{
+	std::string palabra;  // La palabra clave que quieres filtrar
+	std::cout << "Ingrese la palabra clave que desea buscar: " << std::endl;
+	std::cin >> palabra;
+	
+	std::list<Pestania*> listaPestanias = gestorPestania->getPestanias();
+
+	if (listaPestanias.empty()) {
+		interfaz->noPestaniaAbierta();
+		return;
+	}
+
+	std::cout << "Resultados de la búsqueda: " << std::endl;
+
+	for (Pestania* pestania : listaPestanias) {
+		Historial* historialPestania = pestania->getHistorial();
+
+		if (historialPestania != nullptr) {
+			std::vector<Pagina*> resultados = historialPestania->filtrarPorPalabra(palabra);
+
+			if (!resultados.empty()) {
+				for (Pagina* pagina : resultados) {
+					std::cout << pagina->mostrarEnHistorial() << std::endl;
+				}
+			}
+		}
+		else {
+			std::cout << "No hay historial disponible" << std::endl;
+		}
+	}
+
+}
+
 void Navegador::navegarA(std::string& url)
 {
 	Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
@@ -498,9 +551,9 @@ Marcador* Navegador::seleccionarMarcador()
 }
 
 
-void Navegador::importarHistorial(std::string& archivo)
+void Navegador::importarHistorial()
 {
-	std::ifstream file(archivo);
+	std::ifstream file("historialPestania.bin");
 
 	if (!file.is_open()) {
 		interfaz->errorArchivo();
@@ -511,7 +564,11 @@ void Navegador::importarHistorial(std::string& archivo)
 	while (getline(file, url)) {
 		if (!url.empty()) {
 			Pagina* pagina = new Pagina(url);
-
+			if (gestorPestania->getPestaniaActual() == nullptr)
+			{
+				Pestania* pestania = new Pestania();
+				gestorPestania->agregarPestania(pestania);
+			}
 			Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
 			if (pestaniaActual) {
 				pestaniaActual->navegar(pagina);
@@ -526,9 +583,9 @@ void Navegador::importarHistorial(std::string& archivo)
 	interfaz->historialImp();	
 }
 
-void Navegador::exportarHistorial(std::string& archivo)
+void Navegador::exportarHistorial()
 {
-	std::ofstream outputFile(archivo);
+	std::ofstream outputFile("historialPestania.bin");
 
 	if (!outputFile.is_open()) {
 		interfaz->errorArchivo();

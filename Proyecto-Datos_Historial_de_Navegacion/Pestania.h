@@ -2,7 +2,6 @@
 #include <list>
 #include <sstream>
 #include "Historial.h"
-#include "GestorMarcador.h"
 #include <iostream>
 
 class Pestania
@@ -11,7 +10,6 @@ private:
     Historial* historial;
     bool modoIncognito;
     Pagina* pagina;
-    GestorMarcador* gestorMarcadores;
 
 public:
     Pestania();

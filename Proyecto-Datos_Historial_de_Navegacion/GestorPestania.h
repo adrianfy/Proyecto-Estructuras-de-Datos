@@ -18,7 +18,7 @@ public:
     void proximaPestania();
     void pestaniaAnterior();
     Pestania* getPestaniaActual();
-    std::list<Pestania*> getPestanias();
+    std::list<Pestania*>& getPestanias();
 
     std::string mostrarTabs();
 

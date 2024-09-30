@@ -33,14 +33,14 @@ public:
 	
 	void nuevaPestania();
 	void cerrarPestania();	
-	/*void cambiarPestania(int direccion);*/
+	void filtrarHistorial();
 	void navegarA(std::string& url);
 	void cambiarModoIncognito(bool incognito);
 
 	void agregarMarcador(std::string& url, std::string& etiqueta);
 	Marcador* seleccionarMarcador();
-	void importarHistorial(std::string& archivo);
-	void exportarHistorial(std::string& archivo);
+	void importarHistorial();
+	void exportarHistorial();
 
 	void importarMarcadores(std::string& archivo);
 	void exportarMarcadores(std::string& archivo);

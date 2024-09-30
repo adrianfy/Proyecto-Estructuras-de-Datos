@@ -48,10 +48,15 @@ void GestorPestania::pestaniaAnterior()
 
 Pestania* GestorPestania::getPestaniaActual()
 {
-	return *pestaniaActual;
+	if (pestaniaActual != listaPestanias.end()) {
+		return *pestaniaActual;
+	}
+	else {
+		return nullptr; 
+	}
 }
 
-std::list<Pestania*> GestorPestania::getPestanias()
+std::list<Pestania*>& GestorPestania::getPestanias()
 {
 	return listaPestanias;
 }

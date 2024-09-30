@@ -10,8 +10,9 @@ int Interfaz::mostrarMenuPrincipal() {
 	std::cout << "|2. Moverse entre pestañas      |\n";
 	std::cout << "|3. Gestionar marcadores        |\n";
 	std::cout << "|4. Mostrar historial general   |\n";
-	std::cout << "|5. Importar/Exportar historial |\n";
-	std::cout << "|6. Salir                       |\n";
+	std::cout << "|5. Filtrar historial           |\n";
+	std::cout << "|6. Importar/Exportar historial |\n";
+	std::cout << "|7. Salir                       |\n";
 	std::cout << "[-------------------------------]\n";
 
 	return EntradaUsuario::obtenerSeleccionInt();
