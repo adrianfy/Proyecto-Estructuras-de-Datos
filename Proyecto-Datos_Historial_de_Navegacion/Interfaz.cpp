@@ -105,3 +105,25 @@ std::string Interfaz::ingresarEtiqueta() {
 	return etiqueta;
 }
 
+void Interfaz::asistentePaginas()
+{
+	system("cls");
+	std::cout << "[--------------------------------------------]\n";
+	std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
+	std::cout << "|--------------------------------------------|\n";
+	std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
+	std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
+	std::cout << "|Tecla ESC para salir de la pestania         |\n";
+	std::cout << "[--------------------------------------------]\n\n";
+}
+
+void Interfaz::asistentePestanias() {
+	system("cls");
+	std::cout << "[----------------------------------------]\n";
+	std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
+	std::cout << "|----------------------------------------|\n";
+	std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
+	std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
+	std::cout << "|Tecla ESC para salir de la pestania     |\n";
+	std::cout << "[----------------------------------------]\n\n";
+}

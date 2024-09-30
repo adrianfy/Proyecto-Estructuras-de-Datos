@@ -11,7 +11,8 @@ int main() {
 
     setlocale(LC_ALL, "spanish");
 
-	Navegador* navegador = new Navegador();
+	Interfaz* interfaz = new Interfaz();
+	Navegador* navegador = new Navegador(interfaz);
 	navegador->ejecutar();
 
 

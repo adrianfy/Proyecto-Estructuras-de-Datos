@@ -5,6 +5,14 @@ Navegador::Navegador() {
 	this->gestorPestania = new GestorPestania();
 	this->gestorMarcador = new GestorMarcador();
 	this->sesion = new Sesion();
+	this->interfaz = new Interfaz();
+}
+
+Navegador::Navegador(Interfaz* interfaz){
+    this->gestorPestania = new GestorPestania();
+	this->gestorMarcador = new GestorMarcador();
+	this->sesion = new Sesion();
+	this->interfaz = interfaz;
 }
 
 void Navegador::incializarDatos()
@@ -85,7 +93,7 @@ void Navegador::ejecutar()
 
 	while (enEjecucion)
 	{
-		int opcion = mostrarMenuPrincipal();
+		int opcion = interfaz->mostrarMenuPrincipal();
 
 		switch (opcion)
 		{
@@ -236,7 +244,7 @@ void Navegador::subMenuMarcador()
 
 	while (enMarcador) {
 		// Submenú de marcadores
-		int opcionMarcador = mostrarMenuMarcador();
+		int opcionMarcador = interfaz->mostrarMenuMarcador();
 
 		switch (opcionMarcador)
 		{
@@ -288,24 +296,7 @@ void Navegador::subMenuMarcador()
 	}
 }
 
-int Navegador::mostrarMenuPrincipal()
-{
-	system("cls");  // Limpiar pantalla
 
-	std::cout << "[-------------------------------]\n";
-	std::cout << "|        Menu Principal         |\n";
-	std::cout << "|-------------------------------|\n";
-	std::cout << "|1. Abrir nueva pestaña         |\n";
-	std::cout << "|2. Moverse entre pestañas      |\n";
-	std::cout << "|3. Gestionar marcadores        |\n";
-	std::cout << "|4. Mostrar historial general   |\n";
-	std::cout << "|5. Importar/Exportar historial |\n";
-	std::cout << "|6. Salir                       |\n";
-	std::cout << "[-------------------------------]\n";
-	
-
-	return EntradaUsuario::obtenerSeleccionInt();
-}
 
 int Navegador::mostrarMenuPestania()
 {
@@ -326,56 +317,16 @@ int Navegador::mostrarMenuPestania()
 	return EntradaUsuario::obtenerSeleccionInt();
 }
 
-int Navegador::mostrarMenuMarcador()
-{
-	system("cls");  // Limpiar pantalla
-	
-	std::cout << "[-----------------------------]\n";
-	std::cout << "|       Paginas Favoritas     |\n";
-	std::cout << "|-----------------------------|\n";
-	std::cout << "|1. Agregar marcador          |\n";
-	std::cout << "|2. Buscar marcador           |\n";
-	std::cout << "|3. Eliminar marcador         |\n";
-	std::cout << "|4. Mostar marcadores         |\n";
-	std::cout << "|5. Regresar al menú principal|\n";
-	std::cout << "[-----------------------------]\n";
 
-
-
-	return EntradaUsuario::obtenerSeleccionInt();
-}
-
-void Navegador::asistentePaginas()
-{
-	system("cls");
-	std::cout << "[--------------------------------------------]\n";
-	std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
-	std::cout << "|--------------------------------------------|\n";
-	std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
-	std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
-	std::cout << "|Tecla ESC para salir de la pestania         |\n";
-	std::cout << "[--------------------------------------------]\n\n";
-}
-
-void Navegador::asistentePestanias() {
-	system("cls");
-	std::cout << "[----------------------------------------]\n";
-	std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
-	std::cout << "|----------------------------------------|\n";
-	std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
-	std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
-	std::cout << "|Tecla ESC para salir de la pestania     |\n";
-	std::cout << "[----------------------------------------]\n\n";
-}
 void Navegador::navegarEntrePaginas()
 {
 	// Obtener la pestaña actual desde el gestor de pestañas
 	Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
 
-	asistentePaginas();
+	interfaz->asistentePaginas();
 
 	if (pestaniaActual == nullptr) {
-		std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
+		interfaz->noPestaniaAbierta();
 		return;
 	}
 
@@ -384,7 +335,7 @@ void Navegador::navegarEntrePaginas()
 		if (GetAsyncKeyState(VK_LEFT)) {
 			pestaniaActual->retroceder();
 
-			asistentePaginas();
+			interfaz->asistentePaginas();
 
 			std::cout << "Retrocediendo..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
@@ -400,7 +351,7 @@ void Navegador::navegarEntrePaginas()
 		if (GetAsyncKeyState(VK_RIGHT)) {
 			pestaniaActual->avanzar();
 
-			asistentePaginas();
+			interfaz->asistentePaginas();
 
 			std::cout << "Avanzando..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
@@ -424,13 +375,13 @@ void Navegador::navegarEntrePaginas()
 
 void Navegador::cambiarEntrePestanias()
 {
-	asistentePestanias();
+	interfaz->asistentePestanias();
 
 	while (true) {
 		if (GetAsyncKeyState(VK_UP)) {
 			gestorPestania->pestaniaAnterior();
 
-			asistentePestanias();
+			interfaz->asistentePestanias();
 
 			std::cout << "Pestaña anterior seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
@@ -440,7 +391,7 @@ void Navegador::cambiarEntrePestanias()
 		if (GetAsyncKeyState(VK_DOWN)) {
 			gestorPestania->proximaPestania();
 
-			asistentePestanias();
+			interfaz->asistentePestanias();
 
 			std::cout << "Pestaña siguiente seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
@@ -474,7 +425,7 @@ void Navegador::navegarA(std::string& url)
 {
 	Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
 	if (pestaniaActual == nullptr) {
-		std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
+		interfaz->noPestaniaAbierta();
 		return;
 	}
 
@@ -487,7 +438,7 @@ void Navegador::cambiarModoIncognito(bool incognito)
 {
 	Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
 	if (pestaniaActual == nullptr) {
-		std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
+		interfaz->noPestaniaAbierta();
 		return;
 	}
 
@@ -550,7 +501,7 @@ void Navegador::importarHistorial(std::string& archivo)
 	std::ifstream file(archivo);
 
 	if (!file.is_open()) {
-		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		interfaz->errorArchivo();
 		return;
 	}
 
@@ -570,7 +521,7 @@ void Navegador::importarHistorial(std::string& archivo)
 	}
 
 	file.close();
-	std::cout << "Historial importado correctamente desde " << archivo << std::endl;
+	interfaz->historialImp();	
 }
 
 void Navegador::exportarHistorial(std::string& archivo)
@@ -578,7 +529,7 @@ void Navegador::exportarHistorial(std::string& archivo)
 	std::ofstream outputFile(archivo);
 
 	if (!outputFile.is_open()) {
-		std::cout << "Error al abrir el archivo " << std::endl;
+		interfaz->errorArchivo();
 		return;
 	}
 
@@ -594,7 +545,7 @@ void Navegador::exportarHistorial(std::string& archivo)
 	}
 
 	outputFile.close();
-	std::cout << "Historial exportado correctamente a " << archivo << std::endl;
+	interfaz->historialExp();
 }
 
 void Navegador::importarMarcadores(std::string& archivo)
@@ -602,7 +553,7 @@ void Navegador::importarMarcadores(std::string& archivo)
 	std::ifstream file(archivo);
 
 	if (!file.is_open()) {
-		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		interfaz->errorArchivo();
 		return;
 	}
 
@@ -619,7 +570,7 @@ void Navegador::importarMarcadores(std::string& archivo)
 	}
 
 	file.close();
-	std::cout << "Marcadores importados correctamente desde " << archivo << std::endl;
+	interfaz->marcadorImp();
 }
 
 void Navegador::exportarMarcadores(std::string& archivo)
@@ -627,7 +578,7 @@ void Navegador::exportarMarcadores(std::string& archivo)
 	std::ofstream file(archivo);
 
 	if (!file.is_open()) {
-		std::cout << "Error al abrir el archivo " << archivo << std::endl;
+		interfaz->errorArchivo();
 		return;
 	}
 
@@ -637,14 +588,14 @@ void Navegador::exportarMarcadores(std::string& archivo)
 	}
 
 	file.close();
-	std::cout << "Marcadores exportados correctamente a " << archivo << std::endl;
+	interfaz->marcadorExp();
 }
 
 void Navegador::mostrarHistorial() {
 	std::list<Pestania*> listaPestanias = gestorPestania->getPestanias();
 
 	if (listaPestanias.empty()) {
-		std::cout << "No hay pestañas abiertas actualmente." << std::endl;
+		interfaz->noPestaniaAbierta();
 		return;
 	}
 

@@ -5,7 +5,7 @@
 #include "GestorPestania.h"
 #include "GestorMarcador.h"
 #include "Sesion.h"
-#include "EntradaUsuario.h"
+#include "Interfaz.h"
 
 class Navegador
 {
@@ -13,9 +13,11 @@ private:
 	GestorPestania* gestorPestania;
 	GestorMarcador* gestorMarcador;
 	Sesion* sesion;
+	Interfaz* interfaz;
 
 public:
 	Navegador();
+	Navegador(Interfaz* interfaz);	
 
 	void incializarDatos();
 
@@ -24,13 +26,8 @@ public:
 	void subMenuPestania();
 	void subMenuMarcador();
 
-	int mostrarMenuPrincipal();
 	int mostrarMenuPestania();
-	int mostrarMenuMarcador();
-
-	void asistentePaginas();
-	void asistentePestanias();
-
+	
 	void navegarEntrePaginas();
 	void cambiarEntrePestanias();
 	

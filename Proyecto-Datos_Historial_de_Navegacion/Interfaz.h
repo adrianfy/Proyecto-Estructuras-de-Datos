@@ -21,5 +21,9 @@ public:
 	Pagina* ingresarPagina();
 	std::string ingresarEtiqueta();
 
+	void asistentePaginas();
+
+	void asistentePestanias();
+
 };
 
