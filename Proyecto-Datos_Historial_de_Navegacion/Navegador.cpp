@@ -4,6 +4,7 @@
 Navegador::Navegador() {
 	this->gestorPestania = new GestorPestania();
 	this->gestorMarcador = new GestorMarcador();
+	this->sesion = new Sesion();
 }
 
 void Navegador::incializarDatos()
@@ -71,10 +72,13 @@ void Navegador::incializarDatos()
 	gestorPestania->agregarPestania(pestania2);
 	gestorPestania->agregarPestania(pestania3);
 	gestorPestania->agregarPestania(pestania4);
+	gestorPestania->agregarPestania(pestania5);
 }
 
 void Navegador::ejecutar()
 {
+
+	/*sesion->cargarSesion(gestorPestania, gestorMarcador);*/
 	incializarDatos();
 
 	bool enEjecucion = true; // Controla el ciclo principal del navegador
@@ -139,6 +143,7 @@ void Navegador::ejecutar()
 			std::cout << "Opción no válida. Intente nuevamente.\n";
 		}
 	}
+	//sesion->guardarSesion(gestorPestania, gestorMarcador);
 }
 
 void Navegador::subMenuPestania()
@@ -172,8 +177,9 @@ void Navegador::subMenuPestania()
 		case 3:
 		{
 			// Acceder a un marcador
-			std::cout << "Lista de marcadores: " << std::endl;
-			std::cout << gestorMarcador->toString();
+			Marcador* marcadorSeleccionado = seleccionarMarcador();
+			Pagina* paginaFavorita = marcadorSeleccionado->getPagina();
+			gestorPestania->getPestaniaActual()->navegar(paginaFavorita);
 
 			break;
 		}
@@ -192,12 +198,12 @@ void Navegador::subMenuPestania()
 			}
 			if (opcion == 'n') {
 				std::cout << "Modo actual: ";
-				if (gestorPestania->getPestaniaActual()->esIncognito() == true)
+				if (gestorPestania->getPestaniaActual()->esIncognito() == false)
 				{
 					std::cout << "Normal" << std::endl;
 					system("pause");
 				}
-				else if (gestorPestania->getPestaniaActual()->esIncognito() == false)
+				else if (gestorPestania->getPestaniaActual()->esIncognito() == true)
 				{
 					std::cout << "Incognito" << std::endl;
 					system("pause");
@@ -267,6 +273,11 @@ void Navegador::subMenuMarcador()
 		}
 		case 4:
 		{
+			 // Mostrar Marcadores
+			mostrarMarcadores();
+		}
+		case 5:
+		{
 			// Regresar al menú principal
 			enMarcador = false;
 			break;
@@ -299,17 +310,17 @@ int Navegador::mostrarMenuPrincipal()
 int Navegador::mostrarMenuPestania()
 {
 	system("cls");  // Limpiar pantalla
-	
-	std::cout << "[------------------------------------]\n";
-	std::cout << "|            Nueva Pestaña           |\n";
-	std::cout << "|------------------------------------|\n";
-	std::cout << "|1. Ingresar dirección de sitio web. |\n";
-	std::cout << "|2. Avanzar o Retroceder.            |\n";
-	std::cout << "|3. Acceder a un marcador.           |\n";
-	std::cout << "|4. Cambiar a modo incognito.        |\n";
-	std::cout << "|5. Imprimir historial de la pestaña.|\n";
-	std::cout << "|6. Regresar al menú principal       |\n";
-	std::cout << "[------------------------------------]\n";
+
+	std::cout << "[------------------------------------------------]\n";
+	std::cout << "\033[1;32m    Actualmente en la pagina:\033[0m " << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << "   \n";
+	std::cout << "|------------------------------------------------|\n";
+	std::cout << "|      1. Ingresar dirección de sitio web.       |\n";
+	std::cout << "|      2. Avanzar o Retroceder.                  |\n";
+	std::cout << "|      3. Acceder a un marcador.                 |\n";
+	std::cout << "|      4. Cambiar a modo incognito.              |\n";
+	std::cout << "|      5. Imprimir historial de la pestaña.      |\n";
+	std::cout << "|      6. Regresar al menú principal             |\n";
+	std::cout << "[------------------------------------------------]\n";
 
 
 	return EntradaUsuario::obtenerSeleccionInt();
@@ -320,12 +331,13 @@ int Navegador::mostrarMenuMarcador()
 	system("cls");  // Limpiar pantalla
 	
 	std::cout << "[-----------------------------]\n";
-	std::cout << "|        Menu Marcador        |\n";
+	std::cout << "|       Paginas Favoritas     |\n";
 	std::cout << "|-----------------------------|\n";
 	std::cout << "|1. Agregar marcador          |\n";
 	std::cout << "|2. Buscar marcador           |\n";
 	std::cout << "|3. Eliminar marcador         |\n";
-	std::cout << "|4. Regresar al menú principal|\n";
+	std::cout << "|4. Mostar marcadores         |\n";
+	std::cout << "|5. Regresar al menú principal|\n";
 	std::cout << "[-----------------------------]\n";
 
 
@@ -333,10 +345,34 @@ int Navegador::mostrarMenuMarcador()
 	return EntradaUsuario::obtenerSeleccionInt();
 }
 
+void Navegador::asistentePaginas()
+{
+	system("cls");
+	std::cout << "[--------------------------------------------]\n";
+	std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
+	std::cout << "|--------------------------------------------|\n";
+	std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
+	std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
+	std::cout << "|Tecla ESC para salir de la pestania         |\n";
+	std::cout << "[--------------------------------------------]\n\n";
+}
+
+void Navegador::asistentePestanias() {
+	system("cls");
+	std::cout << "[----------------------------------------]\n";
+	std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
+	std::cout << "|----------------------------------------|\n";
+	std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
+	std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
+	std::cout << "|Tecla ESC para salir de la pestania     |\n";
+	std::cout << "[----------------------------------------]\n\n";
+}
 void Navegador::navegarEntrePaginas()
 {
 	// Obtener la pestaña actual desde el gestor de pestañas
 	Pestania* pestaniaActual = gestorPestania->getPestaniaActual();
+
+	asistentePaginas();
 
 	if (pestaniaActual == nullptr) {
 		std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
@@ -347,20 +383,15 @@ void Navegador::navegarEntrePaginas()
 		// Detección de la tecla flecha izquierda para retroceder
 		if (GetAsyncKeyState(VK_LEFT)) {
 			pestaniaActual->retroceder();
-			system("cls");
-			std::cout << "[--------------------------------------------]\n";
-			std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
-			std::cout << "|--------------------------------------------|\n";
-			std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
-			std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
-			std::cout << "|Tecla ESC para salir de la pestania         |\n";
-			std::cout << "[--------------------------------------------]\n\n";
+
+			asistentePaginas();
+
 			std::cout << "Retrocediendo..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
 			}
 			else {
-				std::cout << "No hay más páginas para retroceder." << std::endl;
+				std::cout << "  404 – Not Found. No hay más páginas para retroceder." << std::endl;
 			}
 			Sleep(200);
 		}
@@ -368,20 +399,15 @@ void Navegador::navegarEntrePaginas()
 		// Detección de la tecla flecha derecha para avanzar
 		if (GetAsyncKeyState(VK_RIGHT)) {
 			pestaniaActual->avanzar();
-			system("cls");
-			std::cout << "[--------------------------------------------]\n";
-			std::cout << "|*         ASISTENTE DE NAVEGACION          *|\n";
-			std::cout << "|--------------------------------------------|\n";
-			std::cout << "|Flecha de derecha(->): avanza la pagina     |\n";
-			std::cout << "|Flecha de izquierda(<-): retrocede la pagina|\n";
-			std::cout << "|Tecla ESC para salir de la pestania         |\n";
-			std::cout << "[--------------------------------------------]\n\n";
+
+			asistentePaginas();
+
 			std::cout << "Avanzando..." << std::endl;
 			if (pestaniaActual->getPaginaActual() != nullptr) {
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
 			}
 			else {
-				std::cout << "No hay más páginas para avanzar." << std::endl;
+				std::cout << " 404 – Not Found. No hay más páginas para avanzar." << std::endl;
 			}
 			Sleep(200);
 		}
@@ -398,17 +424,14 @@ void Navegador::navegarEntrePaginas()
 
 void Navegador::cambiarEntrePestanias()
 {
+	asistentePestanias();
+
 	while (true) {
 		if (GetAsyncKeyState(VK_UP)) {
 			gestorPestania->pestaniaAnterior();
-			system("cls");
-			std::cout << "[----------------------------------------]\n";
-			std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
-			std::cout << "|----------------------------------------|\n";
-			std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
-			std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
-			std::cout << "|Tecla ESC para salir de la pestania     |\n";
-			std::cout << "[----------------------------------------]\n\n";
+
+			asistentePestanias();
+
 			std::cout << "Pestaña anterior seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
 			Sleep(200);
@@ -416,14 +439,9 @@ void Navegador::cambiarEntrePestanias()
 
 		if (GetAsyncKeyState(VK_DOWN)) {
 			gestorPestania->proximaPestania();
-			system("cls");
-			std::cout << "[----------------------------------------]\n";
-			std::cout << "|*        ASISTENTE DE NAVEGACION       *|\n";
-			std::cout << "|----------------------------------------|\n";
-			std::cout << "|Flecha de arriba(^): regresa al anterior|\n";
-			std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
-			std::cout << "|Tecla ESC para salir de la pestania     |\n";
-			std::cout << "[----------------------------------------]\n\n";
+
+			asistentePestanias();
+
 			std::cout << "Pestaña siguiente seleccionada." << std::endl;
 			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
 			Sleep(200);
@@ -491,6 +509,41 @@ void Navegador::agregarMarcador(std::string& url, std::string& etiqueta)
 	gestorMarcador->agregarMarcador(marcador);
 	std::cout << "Marcador agregado: [" << etiqueta << "] " << url << std::endl;
 }
+
+Marcador* Navegador::seleccionarMarcador()
+{
+	// Obtener la referencia a la lista de marcadores
+	auto& marcadores = gestorMarcador->getMarcadores();
+
+	if (marcadores.empty()) {
+		std::cout << "No hay marcadores disponibles." << std::endl;
+		return nullptr;
+	}
+
+	// Mostrar los marcadores con índices
+	int indice = 0;
+	for (auto marcador : marcadores) {
+		std::cout << indice << ": " << marcador->toString() << std::endl;
+		++indice;
+	}
+
+	// Solicitar selección al usuario
+	std::cout << "Seleccione el número del marcador que desea abrir: ";
+	int seleccion = EntradaUsuario::obtenerSeleccionInt();
+
+	// Validar la selección
+	if (seleccion < 0 || seleccion >= static_cast<int>(marcadores.size())) {
+		std::cout << "Selección inválida." << std::endl;
+		return nullptr;
+	}
+
+	// Avanzar el iterador hasta la posición seleccionada
+	auto it = marcadores.begin();
+	std::advance(it, seleccion);
+
+	return *it;
+}
+
 
 void Navegador::importarHistorial(std::string& archivo)
 {
@@ -612,11 +665,12 @@ void Navegador::mostrarHistorial() {
 
 void Navegador::mostrarMarcadores()
 {
-	gestorMarcador->toString();
+	std::cout << gestorMarcador->toString();
 }
 
 void Navegador::mostrarPestanias()
 {
+	std::cout << gestorPestania->mostrarTabs();
 }
 
 
