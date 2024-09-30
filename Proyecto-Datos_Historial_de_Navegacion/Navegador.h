@@ -12,6 +12,7 @@ class Navegador
 private:
 	GestorPestania* gestorPestania;
 	GestorMarcador* gestorMarcador;
+	Sesion* sesion;
 
 public:
 	Navegador();
@@ -27,6 +28,9 @@ public:
 	int mostrarMenuPestania();
 	int mostrarMenuMarcador();
 
+	void asistentePaginas();
+	void asistentePestanias();
+
 	void navegarEntrePaginas();
 	void cambiarEntrePestanias();
 	
@@ -37,7 +41,7 @@ public:
 	void cambiarModoIncognito(bool incognito);
 
 	void agregarMarcador(std::string& url, std::string& etiqueta);
-	
+	Marcador* seleccionarMarcador();
 	void importarHistorial(std::string& archivo);
 	void exportarHistorial(std::string& archivo);
 

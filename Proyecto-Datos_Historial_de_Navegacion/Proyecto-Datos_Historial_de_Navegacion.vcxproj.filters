@@ -31,9 +31,6 @@
     <Filter Include="Archivos de encabezado\Archivos">
       <UniqueIdentifier>{60999e37-7ced-4c0a-a194-a45b74e69d26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de origen\Archivos">
-      <UniqueIdentifier>{04feb9e5-9303-4104-920d-b42421457d33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de origen\Controlador">
       <UniqueIdentifier>{14d840a3-91b5-46f7-b955-c5c9fca23bd9}</UniqueIdentifier>
     </Filter>
@@ -66,11 +63,11 @@
     <ClInclude Include="Sesion.h">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </ClInclude>
-    <ClInclude Include="Hora.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="EntradaUsuario.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Hora.h">
+      <Filter>Archivos de encabezado\Modelo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,11 +98,11 @@
     <ClCompile Include="Navegador.cpp">
       <Filter>Archivos de origen\Controlador</Filter>
     </ClCompile>
-    <ClCompile Include="Hora.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="EntradaUsuario.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Hora.cpp">
+      <Filter>Archivos de origen\Modelo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

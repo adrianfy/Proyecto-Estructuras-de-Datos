@@ -41,7 +41,7 @@ void GestorMarcador::deserializar(std::ifstream& archivo)
 	}
 }
 
-std::list<Marcador*> GestorMarcador::getMarcadores()
+std::list<Marcador*>& GestorMarcador::getMarcadores()
 {
 	return marcadores; 
 }
@@ -67,6 +67,7 @@ std::string GestorMarcador::toString(){
 	}
 
 	for (auto marcador : marcadores) {
+		s << "Lista de Marcadores: " << std::endl;
 		s << marcador->toString() << std::endl;
 	}
 	return s.str();
