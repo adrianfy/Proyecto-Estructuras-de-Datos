@@ -136,7 +136,7 @@ void Navegador::ejecutar()
 				exportarHistorial(archivo);
 			}
 			else {
-				std::cout << "Opción no válida.\n";
+				interfaz->opcionNoValida();
 			}
 			break;
 		}
@@ -148,7 +148,7 @@ void Navegador::ejecutar()
 			break;
 		}
 		default:
-			std::cout << "Opción no válida. Intente nuevamente.\n";
+			interfaz->opcionNoValida();
 		}
 	}
 	//sesion->guardarSesion(gestorPestania, gestorMarcador);
@@ -173,7 +173,9 @@ void Navegador::subMenuPestania()
 			std::string url;
 			std::cout << "Ingrese URL: ";
 			std::cin >> url;
+
 			navegarA(url);
+			system("pause");
 			break;
 		}
 		case 2:
@@ -232,7 +234,7 @@ void Navegador::subMenuPestania()
 			break;
 		}
 		default:
-			std::cout << "Opción no válida. Regresando al menú principal.\n";
+			interfaz->opcionNoValida();
 		}
 		break;
 	}
@@ -291,7 +293,7 @@ void Navegador::subMenuMarcador()
 			break;
 		}
 		default:
-			std::cout << "Opción no válida. Regresando al menú principal.\n";
+			interfaz->opcionNoValida();
 		}
 	}
 }
@@ -342,7 +344,7 @@ void Navegador::navegarEntrePaginas()
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
 			}
 			else {
-				std::cout << "  404 – Not Found. No hay más páginas para retroceder." << std::endl;
+				interfaz->error404();
 			}
 			Sleep(200);
 		}
@@ -358,7 +360,7 @@ void Navegador::navegarEntrePaginas()
 				std::cout << "Página actual: " << pestaniaActual->getPaginaActual()->toString() << std::endl;
 			}
 			else {
-				std::cout << " 404 – Not Found. No hay más páginas para avanzar." << std::endl;
+				interfaz->error404();
 			}
 			Sleep(200);
 		}
@@ -484,7 +486,7 @@ Marcador* Navegador::seleccionarMarcador()
 
 	// Validar la selección
 	if (seleccion < 0 || seleccion >= static_cast<int>(marcadores.size())) {
-		std::cout << "Selección inválida." << std::endl;
+		interfaz->opcionNoValida();
 		return nullptr;
 	}
 

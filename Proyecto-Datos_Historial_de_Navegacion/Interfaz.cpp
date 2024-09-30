@@ -1,20 +1,20 @@
 #include "Interfaz.h"
 
-int Interfaz::mostrarMenuPrincipal(){
-system("cls");  // Limpiar pantalla
+int Interfaz::mostrarMenuPrincipal() {
+	system("cls");  // Limpiar pantalla
 
-std::cout << "[-------------------------------]\n";
-std::cout << "|        Menu Principal         |\n";
-std::cout << "|-------------------------------|\n";
-std::cout << "|1. Abrir nueva pestaña         |\n";
-std::cout << "|2. Moverse entre pestañas      |\n";
-std::cout << "|3. Gestionar marcadores        |\n";
-std::cout << "|4. Mostrar historial general   |\n";
-std::cout << "|5. Importar/Exportar historial |\n";
-std::cout << "|6. Salir                       |\n";
-std::cout << "[-------------------------------]\n";
+	std::cout << "[-------------------------------]\n";
+	std::cout << "|        Menu Principal         |\n";
+	std::cout << "|-------------------------------|\n";
+	std::cout << "|1. Abrir nueva pestaña         |\n";
+	std::cout << "|2. Moverse entre pestañas      |\n";
+	std::cout << "|3. Gestionar marcadores        |\n";
+	std::cout << "|4. Mostrar historial general   |\n";
+	std::cout << "|5. Importar/Exportar historial |\n";
+	std::cout << "|6. Salir                       |\n";
+	std::cout << "[-------------------------------]\n";
 
-return EntradaUsuario::obtenerSeleccionInt();
+	return EntradaUsuario::obtenerSeleccionInt();
 }
 
 int Interfaz::mostrarMenuPestania()
@@ -54,23 +54,23 @@ int Interfaz::mostrarMenuMarcador()
 	return EntradaUsuario::obtenerSeleccionInt();
 }
 
-void Interfaz::noMasPaginas(){
+void Interfaz::noMasPaginas() {
 	std::cout << "No hay más páginas para avanzar." << std::endl;
 }
 
-void Interfaz::pagActual(){
+void Interfaz::pagActual() {
 	std::cout << "Página actual: " << std::endl;
 }
 
-void Interfaz::errorArchivo(){
+void Interfaz::errorArchivo() {
 	std::cout << "Error al abrir el archivo " << std::endl;
 }
 
-void Interfaz::noPestaniaAbierta(){
+void Interfaz::noPestaniaAbierta() {
 	std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
 }
 
-void Interfaz::marcadorExp(){
+void Interfaz::marcadorExp() {
 	std::cout << "Marcadores exportados correctamente a ";
 }
 
@@ -126,4 +126,19 @@ void Interfaz::asistentePestanias() {
 	std::cout << "|Flecha de abajo(v): avanza al siguiente |\n";
 	std::cout << "|Tecla ESC para salir de la pestania     |\n";
 	std::cout << "[----------------------------------------]\n\n";
+}
+
+void Interfaz::opcionNoValida()
+{
+	std::cout << "Opcion no valida, intente de nuevo." << std::endl;
+}
+
+void Interfaz::noHayPestañas()
+{
+	std::cout << "No hay ninguna pestaña abierta actualmente." << std::endl;
+}
+
+void Interfaz::error404()
+{
+	std::cout << " 404 – Not Found. No hay más páginas" << std::endl;
 }

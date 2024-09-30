@@ -25,5 +25,10 @@ public:
 
 	void asistentePestanias();
 
+	void opcionNoValida();
+
+	void noHayPestañas();
+	void error404();
+
 };
 
