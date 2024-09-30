@@ -31,13 +31,14 @@ void GestorPestania::proximaPestania()
 	if (pestaniaActual != listaPestanias.end() && std::next(pestaniaActual) != listaPestanias.end()) {
 		++pestaniaActual;
 	}
-	else {
+	else if(pestaniaActual == listaPestanias.end()){
 		std::cout << "No hay más pestañas abiertas." << std::endl;
 	}
 }
 
 void GestorPestania::pestaniaAnterior()
 {
+
 	if (pestaniaActual != listaPestanias.begin()) {
 		--pestaniaActual;
 	}
@@ -107,6 +108,8 @@ void GestorPestania::serializar(std::ofstream& archivo)
 	for (Pestania* pestania : listaPestanias) {
 		pestania->serializar(archivo);
 	}
+	int index = std::distance(listaPestanias.begin(), pestaniaActual);
+	archivo.write(reinterpret_cast<char*>(&index), sizeof(index));
 }
 
 void GestorPestania::deserializar(std::ifstream& archivo)
@@ -114,11 +117,17 @@ void GestorPestania::deserializar(std::ifstream& archivo)
 	size_t cantidadPestanias;
 	archivo.read(reinterpret_cast<char*>(&cantidadPestanias), sizeof(cantidadPestanias));
 
+	listaPestanias.clear();
 	for (size_t i = 0; i < cantidadPestanias; ++i) {
 		Pestania* nuevaPestania = new Pestania();
 		nuevaPestania->deserializar(archivo); // Llamar a la deserialización de cada marcador
 		listaPestanias.push_back(nuevaPestania);
 	}
+	int index;
+	archivo.read(reinterpret_cast<char*>(&index), sizeof(index));
+	pestaniaActual = std::next(listaPestanias.begin(), index);
+	std::advance(pestaniaActual, index);
+	
 }
 
 GestorPestania::~GestorPestania()

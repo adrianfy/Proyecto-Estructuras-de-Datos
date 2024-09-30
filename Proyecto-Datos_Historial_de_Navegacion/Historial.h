@@ -26,6 +26,9 @@ public:
 
 	Pagina* retroceder();
 	Pagina* avanzar();
+
+	Pagina* getUltimaPaginaVisitada();
+
 	void establecerlimiteEntradas(size_t limite);
 	void limpiarEntradasAntiguas();
 

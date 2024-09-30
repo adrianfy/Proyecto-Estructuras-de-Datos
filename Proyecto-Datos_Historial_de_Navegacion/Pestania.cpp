@@ -13,6 +13,7 @@ Pestania::Pestania(bool modoIncognito) {
 }
 
 Pagina* Pestania::getPaginaActual() {
+
     return pagina;
 }
 
@@ -52,18 +53,17 @@ bool Pestania::esIncognito() {
 
 void Pestania::serializar(std::ofstream& archivo)
 {
-    //archivo.write(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));
-
     historial->serializar(archivo);
+    archivo.write(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));
 }
 
-Pestania* Pestania::deserializar(std::ifstream& archivo)
+void Pestania::deserializar(std::ifstream& archivo)
 {
-    /* archivo.read(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));*/
+    historial->deserializar(archivo);
+    archivo.read(reinterpret_cast<char*>(&modoIncognito), sizeof(modoIncognito));
 
-    Historial* historialDeserializado = new Historial();
-    historialDeserializado->deserializar(archivo);
-    return new Pestania(historialDeserializado);
+    pagina = historial->getUltimaPaginaVisitada();
+
 }
 
 std::string Pestania::mostrarHistorial() {

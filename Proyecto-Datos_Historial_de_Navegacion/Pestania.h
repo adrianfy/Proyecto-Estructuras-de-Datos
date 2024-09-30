@@ -25,7 +25,7 @@ public:
     bool esIncognito();
 
     void serializar(std::ofstream& archivo);
-    Pestania* deserializar(std::ifstream& archivo);
+    void deserializar(std::ifstream& archivo);
 
     std::string mostrarHistorial();
     std::string toString();

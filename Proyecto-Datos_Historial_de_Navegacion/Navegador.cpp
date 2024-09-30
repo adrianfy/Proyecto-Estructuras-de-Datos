@@ -17,70 +17,70 @@ Navegador::Navegador(Interfaz* interfaz){
 
 void Navegador::incializarDatos()
 {
-	// Crear una pestaña para pruebas
+	//// Crear una pestaña para pruebas
 
-	Pestania* pestania1 = new Pestania();
-	Pestania* pestania2 = new Pestania();
-	Pestania* pestania3 = new Pestania();
-	Pestania* pestania4 = new Pestania();
-	Pestania* pestania5 = new Pestania();
-	pestania5->cambiarModoIncognito(true);
+	//Pestania* pestania1 = new Pestania();
+	//Pestania* pestania2 = new Pestania();
+	//Pestania* pestania3 = new Pestania();
+	//Pestania* pestania4 = new Pestania();
+	//Pestania* pestania5 = new Pestania();
+	//pestania5->cambiarModoIncognito(true);
 
-	// Crear un objeto Hora para las paginas
-	Hora* hora = new Hora();
+	//// Crear un objeto Hora para las paginas
+	//Hora* hora = new Hora();
 
-	// Crear algunas páginas de prueba
-	Pagina* pagina1 = new Pagina("www.google.com");
-	Pagina* pagina2 = new Pagina("www.youtube.com");
-	Pagina* pagina3 = new Pagina("www.github.com");
-	Pagina* pagina4 = new Pagina("www.crunchyroll.com");
-	Pagina* pagina5 = new Pagina("www.crhoy.com");
-	Pagina* pagina6 = new Pagina("www.aulavirtual.com");
-	Pagina* pagina7 = new Pagina("www.onlyfans.com");
-	Pagina* pagina8 = new Pagina("www.netflix.com");
-	Pagina* pagina9 = new Pagina("www.instagram.com");
-	Pagina* pagina10 = new Pagina("www.twitter.com");
+	//// Crear algunas páginas de prueba
+	//Pagina* pagina1 = new Pagina("www.google.com");
+	//Pagina* pagina2 = new Pagina("www.youtube.com");
+	//Pagina* pagina3 = new Pagina("www.github.com");
+	//Pagina* pagina4 = new Pagina("www.crunchyroll.com");
+	//Pagina* pagina5 = new Pagina("www.crhoy.com");
+	//Pagina* pagina6 = new Pagina("www.aulavirtual.com");
+	//Pagina* pagina7 = new Pagina("www.onlyfans.com");
+	//Pagina* pagina8 = new Pagina("www.netflix.com");
+	//Pagina* pagina9 = new Pagina("www.instagram.com");
+	//Pagina* pagina10 = new Pagina("www.twitter.com");
 
-	// Navegar a algunas páginas
+	//// Navegar a algunas páginas
 
-	pestania1->navegar(pagina1);
-	pestania1->navegar(pagina2);
-	pestania1->navegar(pagina4);
-	pestania1->navegar(pagina8);
+	//pestania1->navegar(pagina1);
+	//pestania1->navegar(pagina2);
+	//pestania1->navegar(pagina4);
+	//pestania1->navegar(pagina8);
 
-	pestania2->navegar(pagina1);
-	pestania2->navegar(pagina6);
-	pestania2->navegar(pagina9);
+	//pestania2->navegar(pagina1);
+	//pestania2->navegar(pagina6);
+	//pestania2->navegar(pagina9);
 
-	pestania3->navegar(pagina3);
-	pestania3->navegar(pagina5);
+	//pestania3->navegar(pagina3);
+	//pestania3->navegar(pagina5);
 
-	pestania4->navegar(pagina5);
-	pestania4->navegar(pagina10);
-	pestania4->navegar(pagina2);
+	//pestania4->navegar(pagina5);
+	//pestania4->navegar(pagina10);
+	//pestania4->navegar(pagina2);
 
-	pestania5->navegar(pagina1);
-	pestania5->navegar(pagina7);
+	//pestania5->navegar(pagina1);
+	//pestania5->navegar(pagina7);
 
-	// Creacion de marcadores.
-	Marcador* marcador1 = new Marcador(pagina2, "Entretenimiento");
-	Marcador* marcador2 = new Marcador(pagina4, "Entretenimiento");
-	Marcador* marcador3 = new Marcador(pagina3, "Educación");
-	Marcador* marcador4 = new Marcador(pagina6, "Educación");
+	//// Creacion de marcadores.
+	//Marcador* marcador1 = new Marcador(pagina2, "Entretenimiento");
+	//Marcador* marcador2 = new Marcador(pagina4, "Entretenimiento");
+	//Marcador* marcador3 = new Marcador(pagina3, "Educación");
+	//Marcador* marcador4 = new Marcador(pagina6, "Educación");
 
-	// Guardar marcadores.
+	//// Guardar marcadores.
 
-	gestorMarcador->agregarMarcador(marcador1);
-	gestorMarcador->agregarMarcador(marcador2);
-	gestorMarcador->agregarMarcador(marcador3);
-	gestorMarcador->agregarMarcador(marcador4);
+	//gestorMarcador->agregarMarcador(marcador1);
+	//gestorMarcador->agregarMarcador(marcador2);
+	//gestorMarcador->agregarMarcador(marcador3);
+	//gestorMarcador->agregarMarcador(marcador4);
 
-	// Guardar Pestanias
-	gestorPestania->agregarPestania(pestania1);
-	gestorPestania->agregarPestania(pestania2);
-	gestorPestania->agregarPestania(pestania3);
-	gestorPestania->agregarPestania(pestania4);
-	gestorPestania->agregarPestania(pestania5);
+	//// Guardar Pestanias
+	//gestorPestania->agregarPestania(pestania1);
+	//gestorPestania->agregarPestania(pestania2);
+	//gestorPestania->agregarPestania(pestania3);
+	//gestorPestania->agregarPestania(pestania4);
+	//gestorPestania->agregarPestania(pestania5);
 }
 
 void Navegador::ejecutar()
@@ -316,12 +316,11 @@ int Navegador::mostrarMenuPestania()
 {
 	system("cls");  // Limpiar pantalla
 
-	std::cout << "[------------------------------------------------]\n";
-	if (gestorPestania && gestorPestania->getPestaniaActual()) {
+	if (gestorPestania && gestorPestania->getPestaniaActual() && gestorPestania->getPestaniaActual()->getPaginaActual()) {
 		std::cout << "\033[1;32m    Actualmente en la pagina:\033[0m " << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << "   \n";
 	}
 	else {
-		std::cerr << "               Buscando una pagina...\n";
+		std::cout << "Error: Página actual no disponible.\n";
 	}
 
 	
@@ -415,7 +414,12 @@ void Navegador::cambiarEntrePestanias()
 			interfaz->asistentePestanias();
 
 			std::cout << "Pestaña siguiente seleccionada." << std::endl;
-			std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
+			if (gestorPestania->getPestaniaActual()->getPaginaActual() != nullptr) {
+				std::cout << "Pestaña actual:" << gestorPestania->getPestaniaActual()->getPaginaActual()->getUrl() << std::endl;
+			}
+			else {
+				interfaz->error404();
+			}
 			Sleep(200);
 		}
 

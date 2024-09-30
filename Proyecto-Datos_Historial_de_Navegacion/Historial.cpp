@@ -42,6 +42,14 @@ Pagina* Historial::avanzar()
 	return nullptr;
 }
 
+Pagina* Historial::getUltimaPaginaVisitada()
+{
+	if (!historial.empty()) {
+		return *paginaActual;
+	}
+	return nullptr;
+}
+
 void Historial::inicio()
 {
 	paginaActual = historial.begin();
@@ -123,6 +131,9 @@ void Historial::serializar(std::ofstream& archivo)
 	for (auto& pagina : historial) {
 		pagina->serializar(archivo);
 	}
+
+	int index = std::distance(historial.begin(), paginaActual);
+	archivo.write(reinterpret_cast<char*>(&index), sizeof(index));
 }
 
 void Historial::deserializar(std::ifstream& archivo)
@@ -130,11 +141,17 @@ void Historial::deserializar(std::ifstream& archivo)
 	size_t sitiosWeb;
 	archivo.read(reinterpret_cast<char*>(&sitiosWeb), sizeof(sitiosWeb));
 
+	historial.clear();
 	for (size_t i = 0; i < sitiosWeb; ++i) {
 		Pagina* sitioWeb = new Pagina();
 		sitioWeb->deserializar(archivo); // Llamar a la deserialización de cada marcador
 		historial.push_back(sitioWeb);
 	}
+
+	int index;
+	archivo.read(reinterpret_cast<char*>(&index), sizeof(index));
+	paginaActual = historial.begin();
+	std::advance(paginaActual, index);
 }
 
 std::string Historial::toString()
